@@ -17,40 +17,52 @@ public class JdbcBreweryDao implements BreweryDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    // SQL query tested in pgAdmin - Success
+    @Override
+    public List<Brewery> getAllBreweries() {
+        String sql = "SELECT brewery_id, brewery_name, street_address, city, zip_code, website FROM breweries;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+        List<Brewery> breweryList = new ArrayList<>();
+        while (results.next()) {
+            breweryList.add(mapRowToBreweries(results));
+        }
+        return breweryList;
+    }
+
+    // SQL query tested in pgAdmin - Success
     @Override
     public List<Brewery> searchBreweriesByName(String breweryName) {
-        List<Brewery> results = new ArrayList<>();
-        String sql = "SELECT brewery_name, street_address, city, zip_code, website FROM breweries WHERE brewery_name = ?;";
-        SqlRowSet sqlRowSet = jdbcTemplate.queryForRowSet(sql);
-        while (sqlRowSet.next()) {
-            Brewery brewery = mapRowToBreweries(sqlRowSet);
-            results.add(brewery);
+        String sql = "SELECT brewery_id, brewery_name, street_address, city, zip_code, website FROM breweries WHERE brewery_name = ?;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, breweryName);
+        List<Brewery> breweryList = new ArrayList<>();
+        while (results.next()) {
+            breweryList.add(mapRowToBreweries(results));
         }
-        return results;
+        return breweryList;
     }
 
+    // SQL query tested in pgAdmin - Success
     @Override
     public List<Brewery> getBreweriesByCity(String city) {
-        List<Brewery> results = new ArrayList<>();
-        String sql = "SELECT brewery_name, street_address, city, zip_code, website FROM breweries WHERE city = ?;";
-        SqlRowSet sqlRowSet = jdbcTemplate.queryForRowSet(sql);
-        while (sqlRowSet.next()) {
-            Brewery brewery = mapRowToBreweries(sqlRowSet);
-            results.add(brewery);
+        String sql = "SELECT brewery_id, brewery_name, street_address, city, zip_code, website FROM breweries WHERE city = ?;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, city);
+        List<Brewery> breweryList = new ArrayList<>();
+        while (results.next()) {
+            breweryList.add(mapRowToBreweries(results));
         }
-        return results;
+        return breweryList;
     }
 
+    // SQL query tested in pgAdmin - Success
     @Override
     public List<Brewery> getBreweriesByZip(String zipCode) {
-        List<Brewery> results = new ArrayList<>();
-        String sql = "SELECT brewery_name, street_address, city, zip_code, website FROM breweries WHERE zip_code = ?;";
-        SqlRowSet sqlRowSet = jdbcTemplate.queryForRowSet(sql);
-        while (sqlRowSet.next()) {
-            Brewery brewery = mapRowToBreweries(sqlRowSet);
-            results.add(brewery);
+        String sql = "SELECT brewery_id, brewery_name, street_address, city, zip_code, website FROM breweries WHERE zip_code = ?;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, zipCode);
+        List<Brewery> breweryList = new ArrayList<>();
+        while (results.next()) {
+            breweryList.add(mapRowToBreweries(results));
         }
-        return results;
+        return breweryList;
     }
 
     private Brewery mapRowToBreweries(SqlRowSet rowSet) {
