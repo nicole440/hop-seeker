@@ -23,9 +23,16 @@ public class UserController {
         this.breweryDao = breweryDao;
     }
 
+//    @RequestMapping(path="/breweries/favorites/{userId}", method = RequestMethod.GET)
+//    public List<Brewery> getCurrentUserFavorites(@PathVariable Principal principal) {
+//        int currentUserId = userDao.findIdByUsername(principal.getName());
+//        List<Brewery> favoritesList = breweryDao.getFavoritesByUserId(currentUserId);
+//        return favoritesList;
+//    }
+
     @RequestMapping(path="/breweries/favorites/{userId}", method = RequestMethod.GET)
-    public List<Brewery> getCurrentUserFavorites(@PathVariable Principal principal) {
-        int currentUserId = userDao.findIdByUsername(principal.getName());
-        return breweryDao.getFavoritesByUserId(currentUserId);
+    public List<Brewery> getCurrentUserFavorites(@PathVariable int userId) {
+        List<Brewery> favoritesList = breweryDao.getFavoritesByUserId(userId);
+        return favoritesList;
     }
 }
