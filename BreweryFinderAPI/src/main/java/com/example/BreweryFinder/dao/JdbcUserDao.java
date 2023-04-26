@@ -17,6 +17,13 @@ public class JdbcUserDao implements UserDao {
         return false;
     }
 
+    // SQL query tested in pgAdmin - Success
+    @Override
+    public Integer findIdByUsername(String username) {
+        Integer userId = jdbcTemplate.queryForObject("SELECT user_id FROM users WHERE username = ?", Integer.class, username);
+        return userId;
+    }
+
     private User mapRowToUser(SqlRowSet rs) {
         User user = new User();
         user.setId(rs.getInt("user_id"));

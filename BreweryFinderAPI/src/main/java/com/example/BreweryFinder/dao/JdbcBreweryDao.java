@@ -65,6 +65,19 @@ public class JdbcBreweryDao implements BreweryDao {
         return breweryList;
     }
 
+    // SQL query tested in pgAdmin - Success
+    public List<Brewery> getFavoritesByUserId(int userId) {
+        String sql = "SELECT b.brewery_id, brewery_name, street_address, city, zip_code, website FROM breweries AS b " +
+        "JOIN user_favorites AS uf ON uf.brewery_id = b.brewery_id " +
+        "WHERE uf.user_id = ?;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
+        List<Brewery> breweryList = new ArrayList<>();
+        while (results.next()) {
+            breweryList.add(mapRowToBreweries(results));
+        }
+        return breweryList;
+    }
+
     private Brewery mapRowToBreweries(SqlRowSet rowSet) {
         Brewery brewery = new Brewery();
         brewery.setBreweryId(rowSet.getInt("brewery_id"));
