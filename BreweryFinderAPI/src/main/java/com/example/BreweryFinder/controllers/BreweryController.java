@@ -13,17 +13,26 @@ public class BreweryController {
     @Autowired
     private BreweryDao breweryDao;
 
-    @RequestMapping(path="/breweries/{breweryName}", method = RequestMethod.GET)
+    public BreweryController(BreweryDao breweryDao) {
+        this.breweryDao = breweryDao;
+    }
+
+    @RequestMapping(path="/breweries/all", method = RequestMethod.GET)
+    public List<Brewery> getAllBreweries() {
+        return breweryDao.getAllBreweries();
+    }
+
+    @RequestMapping(path="/breweries/name/{breweryName}", method = RequestMethod.GET)
     public List<Brewery> searchBreweriesByName(@PathVariable String breweryName) {
         return breweryDao.searchBreweriesByName(breweryName);
     }
 
-    @RequestMapping(path="/breweries/{city}", method = RequestMethod.GET)
+    @RequestMapping(path="/breweries/city/{city}", method = RequestMethod.GET)
     public List<Brewery> getBreweriesByCity(@PathVariable String city) {
         return breweryDao.getBreweriesByCity(city);
     }
 
-    @RequestMapping(path="/breweries/{zipCode}", method = RequestMethod.GET)
+    @RequestMapping(path="/breweries/zip/{zipCode}", method = RequestMethod.GET)
     public List<Brewery> getBreweriesByZip(@PathVariable String zipCode) {
         return breweryDao.getBreweriesByZip(zipCode);
     }
