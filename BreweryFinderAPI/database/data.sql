@@ -12,3 +12,4 @@ SELECT user_id FROM users WHERE username = 'admin';
 
 SELECT * FROM user_favorites;
 INSERT INTO user_favorites (user_id, brewery_id) VALUES (2, 2);
+INSERT INTO user_favorites (user_id, brewery_id) VALUES (1, 1);
