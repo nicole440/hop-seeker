@@ -3,9 +3,9 @@ package com.example.BreweryFinder.models;
 public class LoginResponseDto {
 
     private String token;
-    private User user;
+    private com.example.BreweryFinder.models.User user;
 
-    public LoginResponseDto(String token, User user) {
+    public LoginResponseDto(String token, com.example.BreweryFinder.models.User user) {
         this.token = token;
         this.user = user;
     }
@@ -18,11 +18,11 @@ public class LoginResponseDto {
         this.token = token;
     }
 
-    public User getUser() {
+    public com.example.BreweryFinder.models.User getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(com.example.BreweryFinder.models.User user) {
         this.user = user;
     }
 }

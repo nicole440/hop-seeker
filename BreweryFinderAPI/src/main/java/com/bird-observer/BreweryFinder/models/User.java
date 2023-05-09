@@ -3,6 +3,7 @@ package com.example.BreweryFinder.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.HashSet;
@@ -12,8 +13,7 @@ import java.util.Set;
 public class User {
 
     private int id;
-    // find proper bean annotation to ensure user is 21+
-    @NotBlank
+    @NotNull
     private LocalDate dateOfBirth;
     @NotBlank
     private String username;
@@ -21,7 +21,7 @@ public class User {
     private String password;
     @JsonIgnore
     private boolean activated;
-    private Set<Authority> authorities = new HashSet<>();
+    private Set<com.example.BreweryFinder.models.Authority> authorities = new HashSet<>();
 
     private int LEGAL_DRINKING_AGE_USA = 21;
 
@@ -81,18 +81,18 @@ public class User {
         this.activated = activated;
     }
 
-    public Set<Authority> getAuthorities() {
+    public Set<com.example.BreweryFinder.models.Authority> getAuthorities() {
         return authorities;
     }
 
-    public void setAuthorities(Set<Authority> authorities) {
+    public void setAuthorities(Set<com.example.BreweryFinder.models.Authority> authorities) {
         this.authorities = authorities;
     }
 
     public void setAuthorities(String authorities) {
         String[] roles = authorities.split(",");
         for(String role : roles) {
-            this.authorities.add(new Authority("ROLE_" + role));
+            this.authorities.add(new com.example.BreweryFinder.models.Authority("ROLE_" + role));
         }
     }
 

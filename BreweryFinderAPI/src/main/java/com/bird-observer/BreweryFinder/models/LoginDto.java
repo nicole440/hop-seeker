@@ -19,12 +19,12 @@ public class LoginDto {
     public void setPassword(String password) {
         this.password = password;
     }
-// TODO figure out if this is needed with a proper front-end
-//    @Override
-//    public String toString() {
-//        return "LoginDto{" +
-//                "username='" + username + '\'' +
-//                ", password='" + password + '\'' +
-//                '}';
-//    }
+
+    @Override
+    public String toString() {
+        return "LoginDto{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }

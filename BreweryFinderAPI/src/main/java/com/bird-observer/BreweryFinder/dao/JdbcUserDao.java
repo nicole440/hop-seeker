@@ -6,7 +6,7 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 @Component
-public class JdbcUserDao implements UserDao {
+public class JdbcUserDao implements com.example.BreweryFinder.dao.UserDao {
 
     private final JdbcTemplate jdbcTemplate;
 
