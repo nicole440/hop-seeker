@@ -4,15 +4,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Brewery {
     private int breweryId;
-    @JsonProperty
+    @JsonProperty("name")
     private String breweryName;
-    @JsonProperty
+    @JsonProperty("address_1")
     private String breweryStreetAddress;
-    @JsonProperty
+    @JsonProperty("city")
     private String breweryCity;
-    @JsonProperty
+    @JsonProperty("postal_code")
     private String breweryZipCode;
-    @JsonProperty
+    @JsonProperty("website_url")
     private String breweryWebsite;
 
     public Brewery(int breweryId, String breweryName, String breweryStreetAddress, String breweryCity, String breweryZipCode, String breweryWebsite) {
