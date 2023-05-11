@@ -22,32 +22,32 @@ public class BreweryController {
 
     @GetMapping("/breweries/all")
     public ResponseEntity<List<Brewery>> getAllBreweries() {
-        List<Brewery> breweries = breweryService.getAllBreweries();
-        return new ResponseEntity<>(breweries, HttpStatus.OK);
+        List<Brewery> breweryList = breweryService.getAllBreweries();
+        return new ResponseEntity<>(breweryList, HttpStatus.OK);
     }
 
     @GetMapping("/breweries/{breweryName}")
     public ResponseEntity<List<Brewery>> getBreweriesByName(@PathVariable String breweryName) {
-        List<Brewery> breweries = List.of((Brewery) breweryService.getBreweriesByName(breweryName));
-        return new ResponseEntity<>(breweries, HttpStatus.OK);
+        List<Brewery> breweryList = List.of((Brewery) breweryService.getBreweriesByName(breweryName));
+        return new ResponseEntity<>(breweryList, HttpStatus.OK);
     }
 
     @GetMapping("/breweries/{city}")
     public ResponseEntity<List<Brewery>> getBreweriesByCity(@PathVariable String city) {
-            List<Brewery> breweries = List.of((Brewery) breweryService.getBreweriesByCity(city));
-            return new ResponseEntity<>(breweries, HttpStatus.OK);
+            List<Brewery> breweryList = List.of((Brewery) breweryService.getBreweriesByCity(city));
+            return new ResponseEntity<>(breweryList, HttpStatus.OK);
     }
 
     @GetMapping("/breweries/{zipCode}")
     public ResponseEntity<List<Brewery>> getBreweriesByZip(@PathVariable String zipCode) {
-        List<Brewery> breweries = List.of((Brewery) breweryService.getBreweriesByZip(zipCode));
-        return new ResponseEntity<>(breweries, HttpStatus.OK);
+        List<Brewery> breweryList = List.of((Brewery) breweryService.getBreweriesByZip(zipCode));
+        return new ResponseEntity<>(breweryList, HttpStatus.OK);
     }
 
     @GetMapping("/breweries/search/{searchTerm}")
     public ResponseEntity<List<Brewery>> searchBreweries(@PathVariable String searchTerm) {
-        List<Brewery> breweries = List.of((Brewery) breweryService.searchBreweries(searchTerm));
-        return new ResponseEntity<>(breweries, HttpStatus.OK);
+        List<Brewery> breweryList = List.of((Brewery) breweryService.searchBreweries(searchTerm));
+        return new ResponseEntity<>(breweryList, HttpStatus.OK);
     }
 
     @ResponseStatus(HttpStatus.CREATED)

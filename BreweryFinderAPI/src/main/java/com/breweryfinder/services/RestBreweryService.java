@@ -13,31 +13,31 @@ public class RestBreweryService implements BreweryService {
 
     @Override
     public List<Brewery> getAllBreweries() {
-        Brewery[] breweryList = restTemplate.getForObject(API_BASE_URL, Brewery[].class);
-        return Arrays.asList(breweryList);
+        Brewery[] breweries = restTemplate.getForObject(API_BASE_URL, Brewery[].class);
+        return Arrays.asList(breweries);
     }
 
     @Override
     public List<Brewery> getBreweriesByName(String breweryName) {
-        Brewery[] breweryList = restTemplate.getForObject(API_BASE_URL + "?by_name=" + breweryName, Brewery[].class);
-        return Arrays.asList(breweryList);
+        Brewery[] breweries = restTemplate.getForObject(API_BASE_URL + "?by_name=" + breweryName, Brewery[].class);
+        return Arrays.asList(breweries);
     }
 
     @Override
     public List<Brewery> getBreweriesByCity(String city) {
-        Brewery[] breweryList = restTemplate.getForObject(API_BASE_URL + "?by_city=" + city, Brewery[].class);
-        return Arrays.asList(breweryList);
+        Brewery[] breweries = restTemplate.getForObject(API_BASE_URL + "?by_city=" + city, Brewery[].class);
+        return Arrays.asList(breweries);
     }
 
     @Override
     public List<Brewery> getBreweriesByZip(String zipCode) {
-        Brewery[] breweryList = restTemplate.getForObject(API_BASE_URL + "?by_postal=" + zipCode, Brewery[].class);
-        return Arrays.asList(breweryList);
+        Brewery[] breweries = restTemplate.getForObject(API_BASE_URL + "?by_postal=" + zipCode, Brewery[].class);
+        return Arrays.asList(breweries);
     }
 
     @Override
     public List<Brewery> searchBreweries(String searchTerm) {
-        Brewery[] breweryList = restTemplate.getForObject(API_BASE_URL + "/search?query=" + searchTerm, Brewery[].class);
-        return Arrays.asList(breweryList);
+        Brewery[] breweries = restTemplate.getForObject(API_BASE_URL + "/search?query=" + searchTerm, Brewery[].class);
+        return Arrays.asList(breweries);
     }
 }
