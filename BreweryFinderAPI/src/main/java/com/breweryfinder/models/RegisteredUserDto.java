@@ -1,7 +1,12 @@
-package com.example.BreweryFinder.models;
+package com.breweryfinder.models;
 
-public class LoginDto {
+import javax.validation.constraints.NotEmpty;
+
+public class RegisteredUserDto {
+
+    @NotEmpty
     private String username;
+    @NotEmpty
     private String password;
 
     public String getUsername() {
@@ -18,13 +23,5 @@ public class LoginDto {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    @Override
-    public String toString() {
-        return "LoginDto{" +
-                "username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                '}';
     }
 }

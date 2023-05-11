@@ -1,6 +1,6 @@
-package com.example.BreweryFinder.dao;
+package com.breweryfinder.dao;
 
-import com.example.BreweryFinder.models.Brewery;
+import com.breweryfinder.models.Brewery;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;

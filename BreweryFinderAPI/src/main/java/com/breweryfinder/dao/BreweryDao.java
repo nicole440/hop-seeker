@@ -1,6 +1,6 @@
-package com.example.BreweryFinder.dao;
+package com.breweryfinder.dao;
 
-import com.example.BreweryFinder.models.Brewery;
+import com.breweryfinder.models.Brewery;
 
 import java.util.List;
 

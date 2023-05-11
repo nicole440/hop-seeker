@@ -1,8 +1,8 @@
-package com.example.BreweryFinder.controllers;
+package com.breweryfinder.controllers;
 
-import com.example.BreweryFinder.dao.BreweryDao;
-import com.example.BreweryFinder.dao.UserDao;
-import com.example.BreweryFinder.models.Brewery;
+import com.breweryfinder.models.Brewery;
+import com.breweryfinder.dao.BreweryDao;
+import com.breweryfinder.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

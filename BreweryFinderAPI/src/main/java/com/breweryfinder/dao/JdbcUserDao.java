@@ -1,12 +1,12 @@
-package com.example.BreweryFinder.dao;
+package com.breweryfinder.dao;
 
-import com.example.BreweryFinder.models.User;
+import com.breweryfinder.models.User;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 @Component
-public class JdbcUserDao implements com.example.BreweryFinder.dao.UserDao {
+public class JdbcUserDao implements UserDao {
 
     private final JdbcTemplate jdbcTemplate;
 

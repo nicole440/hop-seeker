@@ -1,4 +1,4 @@
-package com.example.BreweryFinder.models;
+package com.breweryfinder.models;
 
 import org.junit.jupiter.api.Test;
 

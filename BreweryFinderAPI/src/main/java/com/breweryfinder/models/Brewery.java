@@ -1,4 +1,4 @@
-package com.example.BreweryFinder.models;
+package com.breweryfinder.models;
 
 public class Brewery {
     private int breweryId;

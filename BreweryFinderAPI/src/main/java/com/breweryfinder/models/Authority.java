@@ -1,4 +1,4 @@
-package com.example.BreweryFinder.models;
+package com.breweryfinder.models;
 
 import java.util.Objects;
 

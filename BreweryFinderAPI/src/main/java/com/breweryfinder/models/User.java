@@ -1,4 +1,4 @@
-package com.example.BreweryFinder.models;
+package com.breweryfinder.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -21,7 +21,7 @@ public class User {
     private String password;
     @JsonIgnore
     private boolean activated;
-    private Set<com.example.BreweryFinder.models.Authority> authorities = new HashSet<>();
+    private Set<Authority> authorities = new HashSet<>();
 
     private int LEGAL_DRINKING_AGE_USA = 21;
 
@@ -81,18 +81,18 @@ public class User {
         this.activated = activated;
     }
 
-    public Set<com.example.BreweryFinder.models.Authority> getAuthorities() {
+    public Set<Authority> getAuthorities() {
         return authorities;
     }
 
-    public void setAuthorities(Set<com.example.BreweryFinder.models.Authority> authorities) {
+    public void setAuthorities(Set<Authority> authorities) {
         this.authorities = authorities;
     }
 
     public void setAuthorities(String authorities) {
         String[] roles = authorities.split(",");
         for(String role : roles) {
-            this.authorities.add(new com.example.BreweryFinder.models.Authority("ROLE_" + role));
+            this.authorities.add(new Authority("ROLE_" + role));
         }
     }
 

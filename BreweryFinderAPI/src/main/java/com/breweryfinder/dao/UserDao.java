@@ -1,4 +1,4 @@
-package com.example.BreweryFinder.dao;
+package com.breweryfinder.dao;
 
 public interface UserDao {
 
