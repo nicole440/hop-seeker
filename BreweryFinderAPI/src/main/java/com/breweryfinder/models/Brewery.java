@@ -1,11 +1,18 @@
 package com.breweryfinder.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Brewery {
     private int breweryId;
+    @JsonProperty
     private String breweryName;
+    @JsonProperty
     private String breweryStreetAddress;
+    @JsonProperty
     private String breweryCity;
+    @JsonProperty
     private String breweryZipCode;
+    @JsonProperty
     private String breweryWebsite;
 
     public Brewery(int breweryId, String breweryName, String breweryStreetAddress, String breweryCity, String breweryZipCode, String breweryWebsite) {
