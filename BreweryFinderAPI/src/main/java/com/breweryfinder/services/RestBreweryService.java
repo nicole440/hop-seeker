@@ -1,13 +1,9 @@
 package com.breweryfinder.services;
 
 import com.breweryfinder.models.Brewery;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 
 @Component
@@ -15,26 +11,33 @@ public class RestBreweryService implements BreweryService {
 
     private static final String API_BASE_URL = "https://api.openbrewerydb.org/v1/breweries";
 
-
     @Override
     public List<Brewery> getAllBreweries() {
-        List<Brewery> breweryList = new ArrayList<>();
-        breweryList = Collections.singletonList(restTemplate.getForObject(API_BASE_URL, Brewery.class));
-        return breweryList;
+        Brewery[] breweryList = restTemplate.getForObject(API_BASE_URL, Brewery[].class);
+        return Arrays.asList(breweryList);
     }
 
     @Override
     public List<Brewery> getBreweriesByName(String breweryName) {
-        return null;
+        Brewery[] breweryList = restTemplate.getForObject(API_BASE_URL + "?by_name=" + breweryName, Brewery[].class);
+        return Arrays.asList(breweryList);
     }
 
     @Override
     public List<Brewery> getBreweriesByCity(String city) {
-        return null;
+        Brewery[] breweryList = restTemplate.getForObject(API_BASE_URL + "?by_city=" + city, Brewery[].class);
+        return Arrays.asList(breweryList);
     }
 
     @Override
     public List<Brewery> getBreweriesByZip(String zipCode) {
-        return null;
+        Brewery[] breweryList = restTemplate.getForObject(API_BASE_URL + "?by_postal=" + zipCode, Brewery[].class);
+        return Arrays.asList(breweryList);
+    }
+
+    @Override
+    public List<Brewery> searchBreweries(String searchTerm) {
+        Brewery[] breweryList = restTemplate.getForObject(API_BASE_URL + "/search?query=" + searchTerm, Brewery[].class);
+        return Arrays.asList(breweryList);
     }
 }

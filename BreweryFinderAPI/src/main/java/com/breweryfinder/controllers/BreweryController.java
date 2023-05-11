@@ -44,9 +44,15 @@ public class BreweryController {
         return new ResponseEntity<>(breweries, HttpStatus.OK);
     }
 
+    @GetMapping("/breweries/search/{searchTerm}")
+    public ResponseEntity<List<Brewery>> searchBreweries(@PathVariable String searchTerm) {
+        List<Brewery> breweries = List.of((Brewery) breweryService.searchBreweries(searchTerm));
+        return new ResponseEntity<>(breweries, HttpStatus.OK);
+    }
+
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/breweries/new")
-    public boolean addBrewery (@RequestBody Brewery newBrewery) {
+    public boolean addBrewery(@RequestBody Brewery newBrewery) {
         return breweryDao.addNewBrewery(newBrewery);
     }
 
