@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+import logo from './assets/hop.png';
 import './App.css';
 
 function App() {
@@ -6,16 +6,15 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
+        <h1>Brewery Finder</h1>
+        <p>You must be 21 to enter.</p>
         <a
           className="App-link"
-          href="https://reactjs.org"
+          href="#"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          I am!
         </a>
       </header>
     </div>
