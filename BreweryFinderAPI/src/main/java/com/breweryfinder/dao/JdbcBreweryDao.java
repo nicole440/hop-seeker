@@ -66,6 +66,7 @@ public class JdbcBreweryDao implements BreweryDao {
     }
 
     // SQL query tested in pgAdmin - Success
+    @Override
     public List<Brewery> getFavoritesByUserId(int userId) {
         String sql = "SELECT b.brewery_id, brewery_name, street_address, city, zip_code, website FROM breweries AS b " +
         "JOIN user_favorites AS uf ON uf.brewery_id = b.brewery_id " +
@@ -76,6 +77,15 @@ public class JdbcBreweryDao implements BreweryDao {
             breweryList.add(mapRowToBreweries(results));
         }
         return breweryList;
+    }
+
+    // SQL query tested in pgAdmin - Success
+    @Override
+    public boolean addNewBrewery(Brewery newBrewery) {
+        Brewery brewery = new Brewery();
+        String sql = "INSERT INTO breweries (brewery_name, street_address, city, zip_code, website) VALUES (?, ?, ?, ?, ?);";
+        jdbcTemplate.update(sql, Brewery.class);
+        return newBrewery == null ? false : true;
     }
 
     private Brewery mapRowToBreweries(SqlRowSet rowSet) {

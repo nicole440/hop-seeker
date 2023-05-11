@@ -2,39 +2,52 @@ package com.breweryfinder.controllers;
 
 import com.breweryfinder.dao.BreweryDao;
 import com.breweryfinder.models.Brewery;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.breweryfinder.services.BreweryService;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
 @CrossOrigin // Allow calls within domain but not from same port
 public class BreweryController {
 
-    @Autowired
+    private BreweryService breweryService;
     private BreweryDao breweryDao;
 
-    public BreweryController(BreweryDao breweryDao) {
+    public BreweryController(BreweryService breweryService, BreweryDao breweryDao) {
+        this.breweryService = breweryService;
         this.breweryDao = breweryDao;
     }
 
-    @RequestMapping(path="/breweries/all", method = RequestMethod.GET)
-    public List<Brewery> getAllBreweries() {
-        return breweryDao.getAllBreweries();
+    @GetMapping("/breweries/all")
+    public ResponseEntity<List<Brewery>> getAllBreweries() {
+        List<Brewery> breweries = breweryService.getAllBreweries();
+        return new ResponseEntity<>(breweries, HttpStatus.OK);
     }
 
-    @RequestMapping(path="/breweries/name/{breweryName}", method = RequestMethod.GET)
-    public List<Brewery> searchBreweriesByName(@PathVariable String breweryName) {
-        return breweryDao.searchBreweriesByName(breweryName);
+    @GetMapping("/breweries/{breweryName}")
+    public ResponseEntity<List<Brewery>> getBreweriesByName(@PathVariable String breweryName) {
+        List<Brewery> breweries = List.of((Brewery) breweryService.getBreweriesByName(breweryName));
+        return new ResponseEntity<>(breweries, HttpStatus.OK);
     }
 
-    @RequestMapping(path="/breweries/city/{city}", method = RequestMethod.GET)
-    public List<Brewery> getBreweriesByCity(@PathVariable String city) {
-        return breweryDao.getBreweriesByCity(city);
+    @GetMapping("/breweries/{city}")
+    public ResponseEntity<List<Brewery>> getBreweriesByCity(@PathVariable String city) {
+            List<Brewery> breweries = List.of((Brewery) breweryService.getBreweriesByCity(city));
+            return new ResponseEntity<>(breweries, HttpStatus.OK);
     }
 
-    @RequestMapping(path="/breweries/zip/{zipCode}", method = RequestMethod.GET)
-    public List<Brewery> getBreweriesByZip(@PathVariable String zipCode) {
-        return breweryDao.getBreweriesByZip(zipCode);
+    @GetMapping("/breweries/{zipCode}")
+    public ResponseEntity<List<Brewery>> getBreweriesByZip(@PathVariable String zipCode) {
+        List<Brewery> breweries = List.of((Brewery) breweryService.getBreweriesByZip(zipCode));
+        return new ResponseEntity<>(breweries, HttpStatus.OK);
+    }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping("/breweries/new")
+    public boolean addBrewery (@RequestBody Brewery newBrewery) {
+        return breweryDao.addNewBrewery(newBrewery);
     }
 
 }
