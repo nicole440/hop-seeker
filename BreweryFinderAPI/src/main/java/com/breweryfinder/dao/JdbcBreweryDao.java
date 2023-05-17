@@ -84,16 +84,19 @@ public class JdbcBreweryDao implements BreweryDao {
     public boolean addNewBrewery(Brewery newBrewery) {
         Brewery brewery = new Brewery();
         String sql = "INSERT INTO breweries (brewery_name, street_address, city, zip_code, website) VALUES (?, ?, ?, ?, ?);";
-        jdbcTemplate.update(sql, Brewery.class);
+        jdbcTemplate.update(sql, newBrewery.getBreweryName(), newBrewery.getBreweryStreetAddress(), newBrewery.getBreweryCity(), newBrewery.getBreweryZipCode(), newBrewery.getBreweryWebsite());
         return newBrewery == null ? false : true;
     }
 
     // TODO "bad SQL grammar"? Look into this
     @Override
     public boolean saveBreweries(List<Brewery> breweryList) {
+        List<Brewery> breweries = new ArrayList<>();
         for (Brewery brewery : breweryList) {
             addNewBrewery(brewery);
-            return true;
+            if (breweries.size() > 0) {
+                return true;
+            }
         }
         return false;
     }
