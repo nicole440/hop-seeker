@@ -32,11 +32,11 @@
 h1 {
   margin: 0 auto;
   text-shadow: 5px 5px 10px #0c0b0b;
-  font-size: 3em;
+  font-size: 3.5em;
 }
 h3 {
   margin: 10px;
-  font-size: 1.5em;
+  font-size: 1.8em;
   color: #333;
   font-family: 'Caveat', cursive;
   font-weight: 100;
@@ -57,20 +57,21 @@ h3 {
 }
 
 .about {
-  margin: 25px auto;
+  margin: 15px auto;
   padding: 15px;
-  background-color: #fad29fcc;
-  max-width: 350px;
+  background-color: #f0eeebcc;
+  width: 350px;
 }
 p.coming-soon {
   font-style: italic;
+  font-size: .8em;
 }
 
 .search-container {
   display: inline;
 }
 .search-form {
-  margin: 0 auto;
+  margin: 30px auto;
   display: grid;
   max-width: 300px;
 }
@@ -86,11 +87,11 @@ input.search {
   box-shadow: 5px 5px 10px #333;
 }
 input.search:hover {
-  background-color: #fad29fda;
+  background-color: #f0eeebcc;
   box-shadow: 10px 10px 10px #333;
 }
 input.search:focus {
-  background-color: #fad39f;
+  background-color: #f0eeebe8;
 }
 button {
   display: block;
@@ -108,7 +109,7 @@ button {
 button:hover {
   box-shadow: 5px 5px 10px #333;
   cursor: pointer;
-  background-color: #e28408da;
+  background-color: #e48408da;
 }
 
 button.location {
