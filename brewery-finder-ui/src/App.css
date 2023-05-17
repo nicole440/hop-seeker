@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Poltawski+Nowy:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
 
 .App {
   text-align: center;
@@ -6,7 +7,7 @@
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 20vmin;
   pointer-events: none;
 }
 
@@ -17,8 +18,8 @@
 }
 
 .App-header {
-  background-color: #b96b0465;
-  min-height: 100vh;
+  background-color: #b96b04c4;
+  min-height: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,6 +27,20 @@
   font-size: calc(10px + 2vmin);
   color: #FFF;
   font-family: 'Poltawski Nowy', serif;
+}
+
+h1 {
+  margin: 0 auto;
+  text-shadow: 5px 5px 10px #0c0b0b;
+  font-size: 3em;
+}
+h3 {
+  margin: 10px;
+  font-size: 1.5em;
+  color: #333;
+  font-family: 'Caveat', cursive;
+  font-weight: 100;
+  text-shadow: 5px 5px 10px #ffffff91;
 }
 
 .App-link {
@@ -39,4 +54,47 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.search-container {
+  display: inline;
+}
+.search-form {
+  margin: 30px auto;
+  display: grid;
+  max-width: 300px;
+}
+input.search {
+  margin: 8px;
+  padding: 10px;
+  font-family: 'Libre Baskerville', serif;
+  color: #333;
+  width: 250px;
+  background-color: #f5c88dc0;
+  border-style: none;
+  border-radius: 15px;
+  box-shadow: 5px 5px 10px #333;
+}
+input.search:hover {
+  background-color: #fad29fda;
+  box-shadow: 10px 10px 10px #333;
+}
+input.search:focus {
+  background-color: #fad39f;
+}
+button.search {
+  width: 150px;
+  padding: 7px;
+  font-family: 'Libre Baskerville', serif;
+  font-size:larger;
+  font-weight: bold;
+  color: white;
+  background-color: #b96b04c4;
+  border: none;
+  border-radius: 15px;
+}
+button.search:hover {
+  box-shadow: 5px 5px 10px #333;
+  cursor: pointer;
+  background-color: #e28408da;
 }
