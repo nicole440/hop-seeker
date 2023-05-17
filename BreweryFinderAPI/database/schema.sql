@@ -1,6 +1,6 @@
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS users, breweries CASCADE;
+DROP TABLE IF EXISTS users, breweries, user_favorites CASCADE;
 DROP SEQUENCE IF EXISTS user_serial, brewery_serial;
 
 CREATE SEQUENCE user_serial;
@@ -19,7 +19,7 @@ CREATE TABLE breweries (
     brewery_name VARCHAR(50) NOT NULL,
     street_address VARCHAR(50) NULL,
     city VARCHAR(20) NOT NULL,
-    zip_code VARCHAR(5) NOT NULL,
+    zip_code VARCHAR(10) NOT NULL,
     website VARCHAR(200) NULL,
 	CONSTRAINT PK_brewery_id PRIMARY KEY(brewery_id)
 );
