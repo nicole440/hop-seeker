@@ -2,20 +2,21 @@ package com.breweryfinder.controllers;
 
 import com.breweryfinder.dao.BreweryDao;
 import com.breweryfinder.models.Brewery;
-import com.breweryfinder.services.BreweryService;
+import com.breweryfinder.services.BreweryServiceImpl;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/** Receives HTTP requests from the frontend and delegates the processing to BreweryService */
 @RestController
 @CrossOrigin // Allow calls within domain but not from same port
 public class BreweryController {
 
-    private BreweryService breweryService;
+    private BreweryServiceImpl breweryService;
     private BreweryDao breweryDao;
 
-    public BreweryController(BreweryService breweryService, BreweryDao breweryDao) {
+    public BreweryController(BreweryServiceImpl breweryService, BreweryDao breweryDao) {
         this.breweryService = breweryService;
         this.breweryDao = breweryDao;
     }

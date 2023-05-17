@@ -1,0 +1,29 @@
+import axios from 'axios';
+
+const API_BASE_URL = "/api/external/breweries";
+
+const http = axios.create({
+  baseURL: API_BASE_URL,
+});
+
+export default {
+  getAllBreweries() {
+    return http.get('/');
+  },
+
+  getBreweriesByName(breweryName) {
+    return http.get(`/name/${breweryName}`);
+  },
+
+  getBreweriesByCity(city) {
+    return http.get(`/city/${city}`);
+  },
+
+  getBreweriesByZip(zipCode) {
+    return http.get(`/zip/${zipCode}`);
+  },
+
+  searchBreweries(searchTerm) {
+    return http.get(`/search/${searchTerm}`);
+  },
+};

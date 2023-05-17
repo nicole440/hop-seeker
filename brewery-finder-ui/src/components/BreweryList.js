@@ -1,0 +1,1 @@
+/** Renders a list of breweries and uses the BreweryAPIService to fetch data from the backend API. */

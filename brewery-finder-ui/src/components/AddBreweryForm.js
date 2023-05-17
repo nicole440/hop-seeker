@@ -1,0 +1,1 @@
+/** Allows users to add new breweries and interacts with the BreweryAPIService to send the data to the backend. */
