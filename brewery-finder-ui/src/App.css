@@ -56,11 +56,21 @@ h3 {
   }
 }
 
+.about {
+  margin: 25px auto;
+  padding: 15px;
+  background-color: #fad29fcc;
+  max-width: 350px;
+}
+p.coming-soon {
+  font-style: italic;
+}
+
 .search-container {
   display: inline;
 }
 .search-form {
-  margin: 30px auto;
+  margin: 0 auto;
   display: grid;
   max-width: 300px;
 }
@@ -82,7 +92,9 @@ input.search:hover {
 input.search:focus {
   background-color: #fad39f;
 }
-button.search {
+button {
+  display: block;
+  margin: 20px auto;
   width: 150px;
   padding: 7px;
   font-family: 'Libre Baskerville', serif;
@@ -93,8 +105,18 @@ button.search {
   border: none;
   border-radius: 15px;
 }
-button.search:hover {
+button:hover {
   box-shadow: 5px 5px 10px #333;
   cursor: pointer;
   background-color: #e28408da;
+}
+
+button.location {
+  width:fit-content;
+  background-color: rgba(0, 128, 0, 0.76);
+}
+button.location:hover {
+  background-color: rgba(128, 128, 128, 0.74);
+  color:#333333cb;
+  cursor:crosshair;
 }

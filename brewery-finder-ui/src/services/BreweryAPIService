@@ -7,9 +7,9 @@ const http = axios.create({
 });
 
 export default {
-  getAllBreweries() {
-    return http.get('/all');
-  },
+  // getAllBreweries() {
+  //   return http.get('/all');
+  // },
 
   getBreweriesByName(breweryName) {
     return http.get(`/name/${breweryName}`);
@@ -24,9 +24,9 @@ export default {
   },
 
   getFavoriteBreweriesByUserId(userId) {
-    return http.get(`/account/${userId}`);
+    return http.get(`/favorites/${userId}`);
   },
-  
+
 // TODO finish this function
   // addBrewery() {
   //   return http.post();
