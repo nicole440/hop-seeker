@@ -1,7 +1,6 @@
 package com.breweryfinder.services;
 
 import com.breweryfinder.models.Brewery;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -13,12 +12,12 @@ import java.util.List;
 
 @Component
 @CrossOrigin
-public class ExternalAPIClient{
+public class OpenBreweryAPI {
 
     private final RestTemplate restTemplate;
     private static final String EXTERNAL_API_URL = "https://api.openbrewerydb.org/v1/breweries";
 
-    public ExternalAPIClient() {
+    public OpenBreweryAPI() {
         this.restTemplate = new RestTemplate();
     }
 

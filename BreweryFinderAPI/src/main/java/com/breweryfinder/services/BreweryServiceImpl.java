@@ -5,7 +5,6 @@ import com.breweryfinder.models.Brewery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**  Interacts with both ExternalAPIClient (to fetch breweries) and the BreweryDao (to perform database operations).*/
@@ -15,7 +14,7 @@ public class BreweryServiceImpl implements BreweryService {
     @Autowired
     BreweryDao breweryDao;
     @Autowired
-    ExternalAPIClient externalAPIClient;
+    OpenBreweryAPI openBreweryAPI;
 
 //    @Override
 //    public List<Brewery> getAllBreweries() {
@@ -27,7 +26,7 @@ public class BreweryServiceImpl implements BreweryService {
         List<Brewery> breweryList = breweryDao.searchBreweriesByName(breweryName);
         if (breweryList.isEmpty()) {
             // If data not found in the database, fetch from the public API
-            breweryList = externalAPIClient.getBreweriesByName(breweryName);
+            breweryList = openBreweryAPI.getBreweriesByName(breweryName);
 
             // Store the fetched data in the database for future use
             breweryDao.saveBreweries(breweryList);
@@ -40,7 +39,7 @@ public class BreweryServiceImpl implements BreweryService {
         List<Brewery> breweryList = breweryDao.getBreweriesByCity(city);
         if (breweryList.isEmpty()) {
             // If data not found in the database, fetch from the public API
-            breweryList = externalAPIClient.getBreweriesByCity(city);
+            breweryList = openBreweryAPI.getBreweriesByCity(city);
 
             // Store the fetched data in the database for future use
             breweryDao.saveBreweries(breweryList);
@@ -53,7 +52,7 @@ public class BreweryServiceImpl implements BreweryService {
         List<Brewery> breweryList = breweryDao.getBreweriesByZip(zipCode);
         if (breweryList.isEmpty()) {
             // If data not found in the database, fetch from the public API
-            breweryList = externalAPIClient.getBreweriesByZip(zipCode);
+            breweryList = openBreweryAPI.getBreweriesByZip(zipCode);
 
             // Store the fetched data in the database for future use
             breweryDao.saveBreweries(breweryList);
