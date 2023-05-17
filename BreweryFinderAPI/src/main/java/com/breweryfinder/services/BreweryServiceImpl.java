@@ -1,44 +1,73 @@
 package com.breweryfinder.services;
 
+import com.breweryfinder.dao.BreweryDao;
 import com.breweryfinder.models.Brewery;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 import java.util.List;
 
-/**  Interacts with both the external API (to fetch breweries) and the JdbcBreweryDao (to perform database operations).*/
+/**  Interacts with both ExternalAPIClient (to fetch breweries) and the BreweryDao (to perform database operations).*/
 @Component
 public class BreweryServiceImpl implements BreweryService {
 
-    private static final String API_BASE_URL = "https://api.openbrewerydb.org/v1/breweries";
+    @Autowired
+    BreweryDao breweryDao;
+    @Autowired
+    ExternalAPIClient externalAPIClient;
 
-    @Override
-    public List<Brewery> getAllBreweries() {
-        Brewery[] breweries = restTemplate.getForObject(API_BASE_URL, Brewery[].class);
-        return Arrays.asList(breweries);
-    }
+//    @Override
+//    public List<Brewery> getAllBreweries() {
+//        return breweryDao.getAllBreweries();
+//    }
 
     @Override
     public List<Brewery> getBreweriesByName(String breweryName) {
-        Brewery[] breweries = restTemplate.getForObject(API_BASE_URL + "?by_name=" + breweryName, Brewery[].class);
-        return Arrays.asList(breweries);
+        List<Brewery> breweryList = breweryDao.searchBreweriesByName(breweryName);
+        if (breweryList.isEmpty()) {
+            // If data not found in the database, fetch from the public API
+            breweryList = externalAPIClient.getBreweriesByName(breweryName);
+
+            // Store the fetched data in the database for future use
+            breweryDao.saveBreweries(breweryList);
+        }
+        return breweryList;
     }
 
     @Override
     public List<Brewery> getBreweriesByCity(String city) {
-        Brewery[] breweries = restTemplate.getForObject(API_BASE_URL + "?by_city=" + city, Brewery[].class);
-        return Arrays.asList(breweries);
+        List<Brewery> breweryList = breweryDao.getBreweriesByCity(city);
+        if (breweryList.isEmpty()) {
+            // If data not found in the database, fetch from the public API
+            breweryList = externalAPIClient.getBreweriesByCity(city);
+
+            // Store the fetched data in the database for future use
+            breweryDao.saveBreweries(breweryList);
+        }
+        return breweryList;
     }
 
     @Override
     public List<Brewery> getBreweriesByZip(String zipCode) {
-        Brewery[] breweries = restTemplate.getForObject(API_BASE_URL + "?by_postal=" + zipCode, Brewery[].class);
-        return Arrays.asList(breweries);
+        List<Brewery> breweryList = breweryDao.getBreweriesByZip(zipCode);
+        if (breweryList.isEmpty()) {
+            // If data not found in the database, fetch from the public API
+            breweryList = externalAPIClient.getBreweriesByZip(zipCode);
+
+            // Store the fetched data in the database for future use
+            breweryDao.saveBreweries(breweryList);
+        }
+        return breweryList;
     }
 
     @Override
-    public List<Brewery> searchBreweries(String searchTerm) {
-        Brewery[] breweries = restTemplate.getForObject(API_BASE_URL + "/search?query=" + searchTerm, Brewery[].class);
-        return Arrays.asList(breweries);
+    public List<Brewery> getFavoritesByUserId(int userId) {
+        return breweryDao.getFavoritesByUserId(userId);
+    }
+
+    @Override
+    public boolean addBrewery(Brewery newBrewery) {
+        return breweryDao.addNewBrewery(newBrewery);
     }
 }

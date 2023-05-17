@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = "/api/external/breweries";
+const API_BASE_URL = "http://localhost:8080/api/external/breweries";
 
 const http = axios.create({
   baseURL: API_BASE_URL,
@@ -8,7 +8,7 @@ const http = axios.create({
 
 export default {
   getAllBreweries() {
-    return http.get('/');
+    return http.get('/all');
   },
 
   getBreweriesByName(breweryName) {
@@ -23,7 +23,12 @@ export default {
     return http.get(`/zip/${zipCode}`);
   },
 
-  searchBreweries(searchTerm) {
-    return http.get(`/search/${searchTerm}`);
+  getFavoriteBreweriesByUserId(userId) {
+    return http.get(`/account/${userId}`);
   },
+  
+// TODO finish this function
+  // addBrewery() {
+  //   return http.post();
+  // }
 };

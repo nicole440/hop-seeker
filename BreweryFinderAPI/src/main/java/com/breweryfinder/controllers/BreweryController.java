@@ -10,6 +10,7 @@ import java.util.List;
 
 /** Receives HTTP requests from the frontend and delegates the processing to BreweryService */
 @RestController
+@RequestMapping("/api/external/breweries")
 @CrossOrigin // Allow calls within domain but not from same port
 public class BreweryController {
 
@@ -21,38 +22,38 @@ public class BreweryController {
         this.breweryDao = breweryDao;
     }
 
-    @GetMapping("/breweries/all")
-    public ResponseEntity<List<Brewery>> getAllBreweries() {
-        List<Brewery> breweryList = breweryService.getAllBreweries();
-        return new ResponseEntity<>(breweryList, HttpStatus.OK);
-    }
+//    @GetMapping("/all")
+//    public ResponseEntity<List<Brewery>> getAllBreweries() {
+//        List<Brewery> breweryList = breweryService.getAllBreweries();
+//        return new ResponseEntity<>(breweryList, HttpStatus.OK);
+//    }
 
-    @GetMapping("/breweries/{breweryName}")
+    @GetMapping("/name/{breweryName}")
     public ResponseEntity<List<Brewery>> getBreweriesByName(@PathVariable String breweryName) {
-        List<Brewery> breweryList = List.of((Brewery) breweryService.getBreweriesByName(breweryName));
+        List<Brewery> breweryList = breweryService.getBreweriesByName(breweryName);
         return new ResponseEntity<>(breweryList, HttpStatus.OK);
     }
 
-    @GetMapping("/breweries/{city}")
+    @GetMapping("/city/{city}")
     public ResponseEntity<List<Brewery>> getBreweriesByCity(@PathVariable String city) {
-            List<Brewery> breweryList = List.of((Brewery) breweryService.getBreweriesByCity(city));
+            List<Brewery> breweryList = breweryService.getBreweriesByCity(city);
             return new ResponseEntity<>(breweryList, HttpStatus.OK);
     }
 
-    @GetMapping("/breweries/{zipCode}")
+    @GetMapping("/zip/{zipCode}")
     public ResponseEntity<List<Brewery>> getBreweriesByZip(@PathVariable String zipCode) {
-        List<Brewery> breweryList = List.of((Brewery) breweryService.getBreweriesByZip(zipCode));
+        List<Brewery> breweryList = breweryService.getBreweriesByZip(zipCode);
         return new ResponseEntity<>(breweryList, HttpStatus.OK);
     }
 
-    @GetMapping("/breweries/search/{searchTerm}")
-    public ResponseEntity<List<Brewery>> searchBreweries(@PathVariable String searchTerm) {
-        List<Brewery> breweryList = List.of((Brewery) breweryService.searchBreweries(searchTerm));
-        return new ResponseEntity<>(breweryList, HttpStatus.OK);
+    @GetMapping("/favorites/{userId}")
+    public ResponseEntity<List<Brewery>> getFavoritesByUserId(@PathVariable int userId, @RequestBody List <Brewery> favoritesList) {
+        List<Brewery> favorites = breweryDao.getFavoritesByUserId(userId);
+        return new ResponseEntity<>(favorites, HttpStatus.OK);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/breweries/new")
+    @PostMapping("/new")
     public boolean addBrewery(@RequestBody Brewery newBrewery) {
         return breweryDao.addNewBrewery(newBrewery);
     }

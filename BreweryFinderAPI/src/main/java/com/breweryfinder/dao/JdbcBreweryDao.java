@@ -18,16 +18,16 @@ public class JdbcBreweryDao implements BreweryDao {
     }
 
     // SQL query tested in pgAdmin - Success
-    @Override
-    public List<Brewery> getAllBreweries() {
-        String sql = "SELECT brewery_id, brewery_name, street_address, city, zip_code, website FROM breweries;";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
-        List<Brewery> breweryList = new ArrayList<>();
-        while (results.next()) {
-            breweryList.add(mapRowToBreweries(results));
-        }
-        return breweryList;
-    }
+//    @Override
+//    public List<Brewery> getAllBreweries() {
+//        String sql = "SELECT brewery_id, brewery_name, street_address, city, zip_code, website FROM breweries;";
+//        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+//        List<Brewery> breweryList = new ArrayList<>();
+//        while (results.next()) {
+//            breweryList.add(mapRowToBreweries(results));
+//        }
+//        return breweryList;
+//    }
 
     // SQL query tested in pgAdmin - Success
     @Override
@@ -86,6 +86,16 @@ public class JdbcBreweryDao implements BreweryDao {
         String sql = "INSERT INTO breweries (brewery_name, street_address, city, zip_code, website) VALUES (?, ?, ?, ?, ?);";
         jdbcTemplate.update(sql, Brewery.class);
         return newBrewery == null ? false : true;
+    }
+
+    // TODO "bad SQL grammar"? Look into this
+    @Override
+    public boolean saveBreweries(List<Brewery> breweryList) {
+        for (Brewery brewery : breweryList) {
+            addNewBrewery(brewery);
+            return true;
+        }
+        return false;
     }
 
     private Brewery mapRowToBreweries(SqlRowSet rowSet) {
