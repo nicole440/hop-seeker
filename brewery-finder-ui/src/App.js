@@ -11,7 +11,7 @@ function App() {
       </header>
       <div class="about">
         <p class="main">Explore Pennsylvania's Finest Craft Breweries</p>
-        <p class="coming-soon">Coming soon: Find breweries near you!</p>
+        <p class="coming-soon">Coming soon: Location-based search!</p>
       </div>
       <div class="search-container">
         <form class="search-form">
