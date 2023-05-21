@@ -21,11 +21,11 @@ public class OpenBreweryAPI {
         this.restTemplate = new RestTemplate();
     }
 
-//    public List<Brewery> getAllBreweries() {
-//        ResponseEntity<Brewery[]> response = restTemplate.exchange(EXTERNAL_API_URL, HttpMethod.GET, null, Brewery[].class);
-//        Brewery[] breweries = response.getBody();
-//        return Arrays.asList(breweries != null ? breweries : new Brewery[0]);
-//    }
+    public List<Brewery> getAllPABreweries() {
+        ResponseEntity<Brewery[]> response = restTemplate.exchange(EXTERNAL_API_URL + "?by_state=pennsylvania", HttpMethod.GET, null, Brewery[].class);
+        Brewery[] breweries = response.getBody();
+        return Arrays.asList(breweries != null ? breweries : new Brewery[0]);
+    }
 
     public List<Brewery> getBreweriesByName(String breweryName) {
         ResponseEntity<Brewery[]> response = restTemplate.exchange(EXTERNAL_API_URL + "?by_name=" + breweryName + "&by_state=pennsylvania", HttpMethod.GET, null, Brewery[].class);
