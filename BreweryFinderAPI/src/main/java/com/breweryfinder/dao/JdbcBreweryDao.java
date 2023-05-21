@@ -19,8 +19,23 @@ public class JdbcBreweryDao implements BreweryDao {
 
     // SQL query tested in pgAdmin - Success
     @Override
-    public List<Brewery> searchBreweriesByName(String breweryName) {
-        String sql = "SELECT brewery_id, brewery_name, street_address, city, zip_code, website FROM breweries WHERE brewery_name = ?;";
+    public List<Brewery> getBreweries() {
+        String sql = "SELECT brewery_id, brewery_name, street_address, city, zip_code, website " +
+                "FROM breweries;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+        List<Brewery> breweryList = new ArrayList<>();
+        while (results.next()) {
+            breweryList.add(mapRowToBreweries(results));
+        }
+        return breweryList;
+    }
+
+    // SQL query tested in pgAdmin - Success
+    @Override
+    public List<Brewery> getBreweriesByName(String breweryName) {
+        String sql = "SELECT brewery_id, brewery_name, street_address, city, zip_code, website " +
+                "FROM breweries " +
+                "WHERE brewery_name = ?;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, breweryName);
         List<Brewery> breweryList = new ArrayList<>();
         while (results.next()) {
@@ -32,7 +47,9 @@ public class JdbcBreweryDao implements BreweryDao {
     // SQL query tested in pgAdmin - Success
     @Override
     public List<Brewery> getBreweriesByCity(String city) {
-        String sql = "SELECT brewery_id, brewery_name, street_address, city, zip_code, website FROM breweries WHERE city = ?;";
+        String sql = "SELECT brewery_id, brewery_name, street_address, city, zip_code, website " +
+                "FROM breweries " +
+                "WHERE city = ?;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, city);
         List<Brewery> breweryList = new ArrayList<>();
         while (results.next()) {
@@ -44,7 +61,9 @@ public class JdbcBreweryDao implements BreweryDao {
     // SQL query tested in pgAdmin - Success
     @Override
     public List<Brewery> getBreweriesByZip(String zipCode) {
-        String sql = "SELECT brewery_id, brewery_name, street_address, city, zip_code, website FROM breweries WHERE zip_code = ?;";
+        String sql = "SELECT brewery_id, brewery_name, street_address, city, zip_code, website " +
+                "FROM breweries " +
+                "WHERE zip_code = ?;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, zipCode);
         List<Brewery> breweryList = new ArrayList<>();
         while (results.next()) {
@@ -56,9 +75,10 @@ public class JdbcBreweryDao implements BreweryDao {
     // SQL query tested in pgAdmin - Success
     @Override
     public List<Brewery> getFavoritesByUserId(int userId) {
-        String sql = "SELECT b.brewery_id, brewery_name, street_address, city, zip_code, website FROM breweries AS b " +
-        "JOIN user_favorites AS uf ON uf.brewery_id = b.brewery_id " +
-        "WHERE uf.user_id = ?;";
+        String sql = "SELECT b.brewery_id, brewery_name, street_address, city, zip_code, website " +
+                "FROM breweries AS b " +
+                "JOIN user_favorites AS uf ON uf.brewery_id = b.brewery_id " +
+                "WHERE uf.user_id = ?;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
         List<Brewery> breweryList = new ArrayList<>();
         while (results.next()) {
@@ -70,24 +90,24 @@ public class JdbcBreweryDao implements BreweryDao {
     // SQL query tested in pgAdmin - Success
     @Override
     public boolean addNewBrewery(Brewery newBrewery) {
-        Brewery brewery = new Brewery();
-        String sql = "INSERT INTO breweries (brewery_name, street_address, city, zip_code, website) VALUES (?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO breweries (brewery_name, street_address, city, zip_code, website) " +
+                "VALUES (?, ?, ?, ?, ?);";
         jdbcTemplate.update(sql, newBrewery.getBreweryName(), newBrewery.getBreweryStreetAddress(), newBrewery.getBreweryCity(), newBrewery.getBreweryZipCode(), newBrewery.getBreweryWebsite());
         return newBrewery == null ? false : true;
     }
 
-    // TODO "bad SQL grammar"? Look into this
-    @Override
-    public boolean saveBreweries(List<Brewery> breweryList) {
-        List<Brewery> breweries = new ArrayList<>();
-        for (Brewery brewery : breweryList) {
-            addNewBrewery(brewery);
-            if (breweries.size() > 0) {
-                return true;
-            }
-        }
-        return false;
-    }
+//    // TODO Refactor this-- "bad SQL grammar"
+//    @Override
+//    public boolean saveBreweries(List<Brewery> breweryList) {
+//        List<Brewery> breweries = new ArrayList<>();
+//        for (Brewery brewery : breweryList) {
+//            addNewBrewery(brewery);
+//            if (breweries.size() > 0) {
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
 
     private Brewery mapRowToBreweries(SqlRowSet rowSet) {
         Brewery brewery = new Brewery();
