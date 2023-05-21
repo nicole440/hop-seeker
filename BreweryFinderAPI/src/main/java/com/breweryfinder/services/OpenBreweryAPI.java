@@ -21,26 +21,20 @@ public class OpenBreweryAPI {
         this.restTemplate = new RestTemplate();
     }
 
-    public List<Brewery> getAllPABreweries() {
-        ResponseEntity<Brewery[]> response = restTemplate.exchange(EXTERNAL_API_URL + "?by_state=pennsylvania", HttpMethod.GET, null, Brewery[].class);
-        Brewery[] breweries = response.getBody();
-        return Arrays.asList(breweries != null ? breweries : new Brewery[0]);
-    }
-
     public List<Brewery> getBreweriesByName(String breweryName) {
-        ResponseEntity<Brewery[]> response = restTemplate.exchange(EXTERNAL_API_URL + "?by_name=" + breweryName + "&by_state=pennsylvania", HttpMethod.GET, null, Brewery[].class);
+        ResponseEntity<Brewery[]> response = restTemplate.exchange(EXTERNAL_API_URL + "?by_name=" + breweryName + "&by_state=pennsylvania&per_page=200", HttpMethod.GET, null, Brewery[].class);
         Brewery[] breweries = response.getBody();
         return Arrays.asList(breweries != null ? breweries : new Brewery[0]);
     }
 
     public List<Brewery> getBreweriesByCity(String city) {
-        ResponseEntity<Brewery[]> response = restTemplate.exchange(EXTERNAL_API_URL + "?by_city=" + city + "&by_state=pennsylvania", HttpMethod.GET, null, Brewery[].class);
+        ResponseEntity<Brewery[]> response = restTemplate.exchange(EXTERNAL_API_URL + "?by_city=" + city + "&by_state=pennsylvania&per_page=200", HttpMethod.GET, null, Brewery[].class);
         Brewery[] breweries = response.getBody();
         return Arrays.asList(breweries != null ? breweries : new Brewery[0]);
     }
 
     public List<Brewery> getBreweriesByZip(String zipCode) {
-        ResponseEntity<Brewery[]> response = restTemplate.exchange(EXTERNAL_API_URL + "?by_postal=" + zipCode + "&by_state=pennsylvania", HttpMethod.GET, null, Brewery[].class);
+        ResponseEntity<Brewery[]> response = restTemplate.exchange(EXTERNAL_API_URL + "?by_postal=" + zipCode + "&by_state=pennsylvania&per_page=200", HttpMethod.GET, null, Brewery[].class);
         Brewery[] breweries = response.getBody();
         return Arrays.asList(breweries != null ? breweries : new Brewery[0]);
     }

@@ -22,12 +22,6 @@ public class BreweryController {
         this.breweryDao = breweryDao;
     }
 
-    @GetMapping("/all")
-    public ResponseEntity<List<Brewery>> getAllBreweries() {
-        List<Brewery> breweryList = breweryService.getAllBreweries();
-        return new ResponseEntity<>(breweryList, HttpStatus.OK);
-    }
-
     @GetMapping("/name/{breweryName}")
     public ResponseEntity<List<Brewery>> getBreweriesByName(@PathVariable String breweryName) {
         List<Brewery> breweryList = breweryService.getBreweriesByName(breweryName);

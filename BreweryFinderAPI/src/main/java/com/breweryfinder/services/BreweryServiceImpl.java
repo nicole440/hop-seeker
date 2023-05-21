@@ -16,11 +16,6 @@ public class BreweryServiceImpl implements BreweryService {
     @Autowired
     OpenBreweryAPI openBreweryAPI;
 
-    @Override
-    public List<Brewery> getAllBreweries() {
-        return breweryDao.getAllBreweries();
-    }
-
     /** The methods that get by Name, City, and Zip first check the app's database
      * for breweries that match the search term, then call the public API for any
      * additional breweries that meet that criteria.
