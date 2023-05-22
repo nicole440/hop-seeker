@@ -3,6 +3,7 @@ package com.breweryfinder.services;
 import com.breweryfinder.dao.BreweryDao;
 import com.breweryfinder.models.Brewery;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -26,17 +27,13 @@ public class BreweryServiceImpl implements BreweryService {
     // TODO finish refactoring so duplicative breweries stop being saved to database and revise subsequent methods re: same
     @Override
     public List<Brewery> getBreweriesByName(String breweryName) {
-        // Check database for breweries and add matching items found to an ArrayList
+        // Check database for breweryName and add matching breweryObject(s) found to an ArrayList
         List<Brewery> breweryList = breweryDao.getBreweriesByName(breweryName);
-        // If data not found in the database, fetch from the public API
+        // If brewery not found in the database, fetch from the public API
         if (breweryList.isEmpty()) {
             breweryList = openBreweryAPI.getBreweriesByName(breweryName);
-            saveBreweries(breweryList); // add the brewery to the database
-
-        } else { // if the brewery database does contain the breweries matching the search
-            breweryList.add((Brewery) openBreweryAPI.getBreweriesByName(breweryName)); // add each API-returned brewery to the list
-            saveBreweries(breweryList); // save all to database
         }
+        saveBreweries(breweryList); // save brewery list to the database
         return breweryList;
     }
 
@@ -45,9 +42,8 @@ public class BreweryServiceImpl implements BreweryService {
         List<Brewery> breweryList = breweryDao.getBreweriesByCity(city);
         if (breweryList.isEmpty()) {
             breweryList = openBreweryAPI.getBreweriesByCity(city);
-
-            saveBreweries(breweryList);
         }
+        saveBreweries(breweryList);
         return breweryList;
     }
 
@@ -56,9 +52,8 @@ public class BreweryServiceImpl implements BreweryService {
         List<Brewery> breweryList = breweryDao.getBreweriesByZip(zipCode);
         if (breweryList.isEmpty()) {
             breweryList = openBreweryAPI.getBreweriesByZip(zipCode);
-
-            saveBreweries(breweryList);
         }
+        saveBreweries(breweryList);
         return breweryList;
     }
 
@@ -69,16 +64,23 @@ public class BreweryServiceImpl implements BreweryService {
 
     @Override
     public void saveBreweries(List<Brewery> breweryList) {
+        // For each brewery in the ArrayList, add it to the database
         for (Brewery brewery : breweryList) {
-           addBrewery(brewery);
+            addBreweryToDatabase(brewery);
         }
     }
 
     @Override
-    public boolean addBrewery(Brewery newBrewery) {
-        if (!breweryDao.getBreweries().contains(newBrewery)) {
-            return breweryDao.addNewBrewery(newBrewery);
+    public boolean addBreweryToDatabase(Brewery newBrewery) {
+        List<Brewery> existingBreweriesInDb = breweryDao.getBreweries();
+        // Check if the brewery already exists in the database
+        for (Brewery brewery : existingBreweriesInDb) {
+            if (brewery.getBreweryName().equalsIgnoreCase(newBrewery.getBreweryName())) {
+                return false; // Brewery already exists, return false to indicate it wasn't added
+            }
         }
-        return false;
+        // If the brewery doesn't exist, add it to the database
+        return breweryDao.addNewBrewery(newBrewery);
     }
+
 }

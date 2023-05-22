@@ -11,5 +11,5 @@ public interface BreweryService {
     List<Brewery> getBreweriesByZip(String zipCode);
     List<Brewery> getFavoritesByUserId(int userId);
     void saveBreweries(List<Brewery> breweryList);
-    boolean addBrewery(Brewery newBrewery);
+    boolean addBreweryToDatabase(Brewery newBrewery);
 }

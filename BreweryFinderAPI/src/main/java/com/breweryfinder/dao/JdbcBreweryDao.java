@@ -35,7 +35,7 @@ public class JdbcBreweryDao implements BreweryDao {
     public List<Brewery> getBreweriesByName(String breweryName) {
         String sql = "SELECT brewery_id, brewery_name, street_address, city, zip_code, website " +
                 "FROM breweries " +
-                "WHERE brewery_name = ?;";
+                "WHERE brewery_name ILIKE ?;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, breweryName);
         List<Brewery> breweryList = new ArrayList<>();
         while (results.next()) {
@@ -95,19 +95,6 @@ public class JdbcBreweryDao implements BreweryDao {
         jdbcTemplate.update(sql, newBrewery.getBreweryName(), newBrewery.getBreweryStreetAddress(), newBrewery.getBreweryCity(), newBrewery.getBreweryZipCode(), newBrewery.getBreweryWebsite());
         return newBrewery == null ? false : true;
     }
-
-//    // TODO Refactor this-- "bad SQL grammar"
-//    @Override
-//    public boolean saveBreweries(List<Brewery> breweryList) {
-//        List<Brewery> breweries = new ArrayList<>();
-//        for (Brewery brewery : breweryList) {
-//            addNewBrewery(brewery);
-//            if (breweries.size() > 0) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
 
     private Brewery mapRowToBreweries(SqlRowSet rowSet) {
         Brewery brewery = new Brewery();
