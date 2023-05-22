@@ -24,7 +24,6 @@ public class BreweryServiceImpl implements BreweryService {
      * external API calls, improving the app's efficiency.
      */
 
-    // TODO finish refactoring so duplicative breweries stop being saved to database and revise subsequent methods re: same
     @Override
     public List<Brewery> getBreweriesByName(String breweryName) {
         // Check database for breweryName and add matching breweryObject(s) found to an ArrayList
