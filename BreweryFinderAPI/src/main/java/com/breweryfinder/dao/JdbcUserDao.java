@@ -26,6 +26,11 @@ public class JdbcUserDao implements UserDao {
         return userId;
     }
 
+    @Override
+    public User findByUsername(String lowercaseLogin) {
+        return null;
+    }
+
     private User mapRowToUser(SqlRowSet rs) {
         User user = new User();
         user.setId(rs.getInt("user_id"));
