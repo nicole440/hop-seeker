@@ -44,3 +44,4 @@ ROLLBACK;
 --INSERT INTO breweries (brewery_name, street_address, city, zip_code, website) VALUES ('Lancaster Brewing Company', '302 N Plum St', 'Lancaster', '17602', 'https://www.lancasterbrewing.com/');
 
 
+SELECT * FROM breweries;
