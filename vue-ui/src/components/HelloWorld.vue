@@ -9,7 +9,7 @@ defineProps({
 
 <template>
   <div class="greetings">
-    <h1 class="green">{{ msg }}</h1>
+    <h1 class="title">{{ msg }}</h1>
     <h3>
       Explore Pennsylvania's Finest Craft Breweries
     </h3>

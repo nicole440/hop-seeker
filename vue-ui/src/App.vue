@@ -21,22 +21,34 @@ import HelloWorld from './components/HelloWorld.vue'
 </template>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Poltawski+Nowy:wght@700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
-
 header {
   line-height: 1.5;
   max-height: 100vh;
-  font-family: 'Poltawski Nowy', serif;
+  padding: 0 20px;
+  background-image: url("https://images.unsplash.com/photo-1600788886242-5c96aabe3757?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
+header .wrapper {
+  color: #141414;
+  font-size: 30px;
+  background-color: #b96b04c4;
+  padding: 15px;
 }
 
 .logo {
   display: block;
   margin: 0 auto 2rem;
 }
-
-@media (prefers-reduced-motion: no-preference) {
+@media {
   .logo {
     animation: logo-spin infinite 20s linear;
   }
