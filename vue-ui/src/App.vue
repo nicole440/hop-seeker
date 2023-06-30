@@ -1,6 +1,9 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import { useStore } from './stores/authStore'
+
+const authStore = useStore();
 </script>
 
 <template>
