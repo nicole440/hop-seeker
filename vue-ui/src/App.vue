@@ -16,9 +16,11 @@ const authStore = useStore();
       <HelloWorld msg="HopSeeker" />
 
       <nav>
+        <div>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/login">Login</RouterLink>
-        <RouterLink to="/search">Search</RouterLink>
+
+      </div>
       </nav>
     </div>
   </header>
@@ -31,10 +33,6 @@ const authStore = useStore();
 div#app > * {
   min-height: 90vh;
 }
-
-/* main {
-  background-color: #b96b04c4;
-} */
 
 header {
   line-height: 1.5;

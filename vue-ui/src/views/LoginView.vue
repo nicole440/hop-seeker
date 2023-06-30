@@ -1,32 +1,31 @@
 <template>
   <div class="login">
-    <h1>This is a login page</h1>
+    <h1>Please sign in</h1>
+    <form @submit.prevent="login">
+      <div class="input">
+        <label for="loginUsername">Username: </label>
+        <input type="text" placeholder="Username" class="loginUsername" v-model="user.username" required>
+        <label for="loginPassword">Password: </label>
+        <input type="password" placeholder="Password" class="loginPassword" v-model="user.password" required>
+      </div>
+      <button class="loginButton" type="submit">Login</button>
+      <div role="alert" v-if="invalidCredentials">
+        Invalid username and password!
+      </div>
+      <div class="register-prompt">
+        <h3>Need an account? </h3>
+        <RouterLink to="register" class="signup">Sign up</RouterLink>
+      </div>
+    </form>
 
-    <main class="form-signin w-100 m-auto">
-      <form @submit.prevent="login">
-        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
-        <div role="alert" v-if="invalidCredentials">
-          Invalid username and password!
-        </div>
-        <div role="alert" v-if="this.$route.query.registration">
+    <!-- <div role="alert" v-if="this.$route.query.registration">
           Thank you for registering, please sign in.
-        </div>
-        <div class="form-floating">
-          <input type="text" class="form-control" id="floatingInput" placeholder="Username" v-model="user.username"
-            required>
-          <label for="floatingInput">Username</label>
-        </div>
-        <div class="form-floating">
-          <input type="password" class="form-control" id="floatingPassword" placeholder="Password" v-model="user.password"
-            required>
-          <label for="floatingPassword">Password</label>
-        </div>
+        </div> -->
 
-        <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-        <router-link :to="{ name: 'register' }" class="signup">Sign up</router-link>
+
+    <!-- <router-link :to="{ name: 'register' }" class="signup">Sign up</router-link>
       </form>
-    </main>
-
+      </div> -->
   </div>
 </template>
 
@@ -36,7 +35,6 @@ import { useStore } from '../stores/authStore';
 
 export default {
   name: "login",
-  components: {},
   data() {
     return {
       user: {
@@ -92,45 +90,18 @@ body {
   padding-bottom: 40px;
 }
 
-.form-signin {
-  max-width: 330px;
-  padding: 15px;
+.login {
+  margin: 0 auto;
+  padding: 20px;
 }
 
-.form-signin .form-floating:focus-within {
-  z-index: 2;
+.input {
+  display: grid;
+  max-width: 200px;
+  padding-bottom: 15px;
 }
 
-.form-signin input[type="text"] {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-}
-
-.form-signin input[type="password"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
-
-.btn-primary {
-  background-color: #b9700f;
-  border: #b9700f 2px solid;
-}
-
-.btn-primary:hover {
-  border: #FFF 2px solid;
-  background-color: #e0d0bc;
-  color: #b9700f;
-}
-
-.signup {
-  font-size: 18px;
-  color: #b9700f;
-  font-style: italic;
-}
-.signup:hover {
-  border: none;
-  color:#FFF;
+.register-prompt {
+  padding-top: 10px;
 }
 </style>
