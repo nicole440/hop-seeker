@@ -62,8 +62,9 @@ header .wrapper {
   display: block;
   margin: 0 auto 2rem;
 }
-@media {
+@media (prefers-reduced-motion: no-preference){
   .logo {
+    padding: 5px;
     animation: logo-spin infinite 20s linear;
   }
 }

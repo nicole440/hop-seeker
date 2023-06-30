@@ -73,7 +73,7 @@ export default {
 };
 </script>
 
-<style>
+<!-- <style>
 @media (min-width: 1024px) {
   .login {
     min-height: 100vh;
@@ -82,5 +82,55 @@ export default {
     padding: 5px;
   }
 }
+</style> -->
 
+<style scoped>
+body {
+  display: flex;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+}
+
+.form-signin .form-floating:focus-within {
+  z-index: 2;
+}
+
+.form-signin input[type="text"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.btn-primary {
+  background-color: #b9700f;
+  border: #b9700f 2px solid;
+}
+
+.btn-primary:hover {
+  border: #FFF 2px solid;
+  background-color: #e0d0bc;
+  color: #b9700f;
+}
+
+.signup {
+  font-size: 18px;
+  color: #b9700f;
+  font-style: italic;
+}
+.signup:hover {
+  border: none;
+  color:#FFF;
+}
 </style>
