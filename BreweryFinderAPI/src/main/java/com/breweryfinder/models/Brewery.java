@@ -3,7 +3,8 @@ package com.breweryfinder.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Brewery {
-    private int breweryId;
+    @JsonProperty("id")
+    private String breweryId;
     @JsonProperty("name")
     private String breweryName;
     @JsonProperty("address_1")
@@ -12,15 +13,21 @@ public class Brewery {
     private String breweryCity;
     @JsonProperty("postal_code")
     private String breweryZipCode;
+    @JsonProperty("latitude")
+    private String latitude;
+    @JsonProperty("longitude")
+    private String longitude;
     @JsonProperty("website_url")
     private String breweryWebsite;
 
-    public Brewery(int breweryId, String breweryName, String breweryStreetAddress, String breweryCity, String breweryZipCode, String breweryWebsite) {
+    public Brewery(String breweryId, String breweryName, String breweryStreetAddress, String breweryCity, String breweryZipCode, String latitude, String longitude, String breweryWebsite) {
         this.breweryId = breweryId;
         this.breweryName = breweryName;
         this.breweryStreetAddress = breweryStreetAddress;
         this.breweryCity = breweryCity;
         this.breweryZipCode = breweryZipCode;
+        this.latitude = latitude;
+        this.longitude = longitude;
         this.breweryWebsite = breweryWebsite;
     }
 
@@ -28,11 +35,11 @@ public class Brewery {
 
     }
 
-    public int getBreweryId() {
+    public String getBreweryId() {
         return breweryId;
     }
 
-    public void setBreweryId(int breweryId) {
+    public void setBreweryId(String breweryId) {
         this.breweryId = breweryId;
     }
 
@@ -66,6 +73,22 @@ public class Brewery {
 
     public void setBreweryZipCode(String breweryZipCode) {
         this.breweryZipCode = breweryZipCode;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
     }
 
     public String getBreweryWebsite() {
