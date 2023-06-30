@@ -17,12 +17,12 @@ import WelcomeItem from './WelcomeItem.vue'
       <!-- use heart_plus on actual button to favorite a brewery, and show heart_check when user has brewery already on their list -->
     </template>
     <template #heading>Favorites</template>
-    Create an account to keep track of your favorites, and leave a note about what you loved!
+    Create an account to keep track of your favorite breweries, tag their best features, and leave a note about what you loved!
   </WelcomeItem>
 
   <WelcomeItem>
     <template #icon>
-
+      <span class="material-symbols-outlined">diversity_3</span>
     </template>
     <template #heading>Community</template>
     Beer-drinking is a social activity! On each brewery's page, you can see how many users loved that brewery.
@@ -30,10 +30,10 @@ import WelcomeItem from './WelcomeItem.vue'
 
   <WelcomeItem>
     <template #icon>
-
+      <span class="material-symbols-outlined">location_on</span>
     </template>
     <template #heading>Beer Near Here</template>
-    Search by your current location!
+    Search by your current location.
   </WelcomeItem>
 
 </template>
