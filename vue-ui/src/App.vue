@@ -2,6 +2,8 @@
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
 import { useStore } from './stores/authStore'
+import HomeView from './views/HomeView.vue';
+// import 'bootstrap/dist/css/bootstrap.css'
 
 const authStore = useStore();
 </script>
@@ -16,14 +18,24 @@ const authStore = useStore();
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/login">Login</RouterLink>
+        <RouterLink to="/search">Search</RouterLink>
       </nav>
     </div>
   </header>
 
   <RouterView />
+  <HomeView />
 </template>
 
 <style scoped>
+div#app > * {
+  min-height: 90vh;
+}
+
+/* main {
+  background-color: #b96b04c4;
+} */
+
 header {
   line-height: 1.5;
   max-height: 100vh;
@@ -39,7 +51,6 @@ header {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 header .wrapper {
   color: #141414;
   font-size: 30px;
