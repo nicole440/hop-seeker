@@ -1,11 +1,11 @@
 <script setup>
-import TheWelcome from '../components/TheWelcome.vue'
+import FeatureCard from '../components/FeatureCard.vue'
 </script>
 
 <template>
   <main>
     <div class="main-container">
-      <TheWelcome />
+      <FeatureCard />
       <!-- Do I need another component? Perhaps an image, or contact info? -->
     </div>
   </main>

@@ -1,8 +1,7 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import HeaderComponent from './components/HeaderComponent.vue'
 import { useStore } from './stores/authStore'
-import UserInput from './components/UserInput.vue';
 
 const authStore = useStore();
 </script>
@@ -12,16 +11,16 @@ const authStore = useStore();
     <img alt="HopSeeker logo" class="logo" src="@/assets/hop.png" width="125" height="125" />
 
     <div class="wrapper">
-      <HelloWorld msg="HopSeeker" />
+      <HeaderComponent msg="HopSeeker" />
 
       <nav>
         <div>
           <RouterLink :to="{ name: 'home' }">Home</RouterLink>
           <RouterLink :to="{ name: 'search' }">Search</RouterLink>
-          <RouterLink :to="{ name: 'login' }" v-if="authStore.tokenCheck == ''">Login</RouterLink>
           <RouterLink :to="{ name: 'favorites' }" v-if="authStore.tokenCheck != ''">Favorites</RouterLink>
-          <RouterLink :to="{ name: 'register' }" v-if="authStore.tokenCheck == ''">Register</RouterLink>
+          <RouterLink :to="{ name: 'login' }" v-if="authStore.tokenCheck == ''">Login</RouterLink>
           <RouterLink :to="{ name: 'logout' }" v-if="authStore.tokenCheck != ''" @click="authStore.logout">Logout</RouterLink>
+          <RouterLink :to="{ name: 'register' }" v-if="authStore.tokenCheck == ''">Register</RouterLink>
         </div>
       </nav>
     </div>
@@ -133,6 +132,20 @@ nav a:first-of-type {
     min-width: 90vw;
   }
 }
+
+/* .main-container {
+    background-color: rgba(20, 20, 20, 0.6);
+    margin: 20px auto;
+    padding: 50px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas: "head"
+        "input"
+        "button"
+        "reroute";
+    width: 80%;
+    justify-content: center;
+} */
 
 main {
   position: relative;
