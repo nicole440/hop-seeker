@@ -3,7 +3,6 @@ import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
 import { useStore } from './stores/authStore'
 import UserInput from './components/UserInput.vue';
-// import 'bootstrap/dist/css/bootstrap.css'
 
 const authStore = useStore();
 </script>
@@ -28,7 +27,6 @@ const authStore = useStore();
     </div>
   </header>
   <RouterView />
-  <!-- <HomeView /> This does not go here. Don't put these here. This is what was making it repeat, I think. -->
 </template>
 
 <style scoped>
@@ -135,4 +133,26 @@ nav a:first-of-type {
     min-width: 90vw;
   }
 }
+
+main {
+  position: relative;
+}
+main::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("https://images.unsplash.com/photo-1604040605063-8323c2b450cf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(2.5px);
+  z-index: -1;
+}
+
+
+
+
 </style>

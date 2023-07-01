@@ -1,6 +1,4 @@
 <script setup>
-import authService from '../services/AuthService'
-import { RouterLink } from 'vue-router'
 import LoginView from '../views/LoginView.vue';
 import RegisterView from '../views/RegisterView.vue';
 import SearchView from '../views/SearchView.vue';
@@ -13,16 +11,17 @@ import SearchView from '../views/SearchView.vue';
 </template>
 
 <style>
-.form-container {
-    margin: 0 auto;
-    padding: 20px;
+.main-container {
+    background-color: rgba(20, 20, 20, 0.6);
+    margin: 20px auto;
+    padding: 50px;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-areas: "head"
         "input"
         "button"
         "reroute";
-    width: 300px;
+    width: 80%;
     justify-content: center;
 }
 
@@ -33,11 +32,12 @@ h1 {
 
 .form-input-group {
     grid-area: input;
-    max-width: 300px;
+    max-width: auto;
     padding: 15px;
 }
 
 .submit-button {
+    width: fit-content;
     grid-area: button;
     padding: 2px;
 }

@@ -1,109 +1,69 @@
 <template>
     <div>
       <div>
-        <table class="table table-hover">
+        <table class="brewery-table">
           <thead>
             <tr>
               <th>Name</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Profile Photo</th>
+              <th>Address</th>
+              <th>City</th>
+              <th>Zip Code</th>
+              <th>Phone Number</th>
+              <th>Lat/Long</th>
+              <th>Website</th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="user in users" :key="user.userId" @click="openModal(user)">
-              <td class="user-name">{{ user.username }}</td>
-              <td class="first-name">{{ user.firstName }}</td>
-              <td class="last-name">{{ user.lastName }}</td>
-              <td class="profile-pic-table">
-                <img :src="user.profilePicture" class="profile-img" />
-              </td>
+            <tr v-for="brewery in breweries" :key="brewery.id">
+              <td class="brewery-name">{{ brewery.name }}</td>
+              <td class="brewery-address">{{ brewery.address }}</td>
+              <td class="brewery-city">{{ brewery.city }}</td>
+              <td class="brewery-zip">{{ brewery.zip }}</td>
+              <td class="brewery-phone">{{ brewery.phone }}</td>
+              <td class="brewery-lat-long">{{ brewery.latitude }}, {{ brewery.longitude }}</td>
+              <td class="brewery-website">{{ brewery.website }}</td>
             </tr>
           </tbody>
         </table>
-      </div>
-  
-      <div class="modal" :class="{ 'is-active': showModal }">
-        <div class="modal-background"></div>
-        <div class="modal-content">
-          <div class="modal-header">
-            <h3 class="modal-title">
-              {{ selectedUser.username }} - {{ selectedUser.firstName }} {{ selectedUser.lastName }}
-            </h3>
-            <img :src="selectedUser.profilePicture" class="large-profile-img" />
-          </div>
-          <div class="modal-body">
-            <div class="bal">
-              <h3>Current balance: ${{ balance }}</h3>
-            </div>
-            <form>
-              <h1 class="h3 mb-3 fw-normal">Please enter an amount.</h1>
-              <!-- <div role="alert" v-if="invalidTransaction"> -->
-              <!--create function for if send amount is greater than their balance-->
-  
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">$</span>
-                </div>
-                <input type="number" class="form-control" placeholder="0.00" min="0.00" />
-              </div>
-  
-              <div class="form-floating">
-                <input type="text" class="form-control" id="floatingInput" placeholder="note" />
-                <label for="floatingInput">Note</label>
-              </div>
-              <div class="btn group">
-                <button class="btn btn-primary btn-lg mx-1">Pay</button>
-                <button class="btn btn-primary btn-lg mx-1">Request</button>
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button class="button" @click="closeModal">Close</button>
-          </div>
-        </div>
       </div>
     </div>
   </template>
   
   <script>
   import { useStore } from '../stores/authStore'
-  import UserService from '../services/UserService'
-  import TransactionService from '../services/TransactionService'
+  import BreweryService from '../services/BreweryService'
   
   export default {
     name: 'brewery-list',
     data() {
       return {
-        users: [],
-        selectedUser: '',
-        showModal: false,
-        balance: null,
-        transfer: {
-          transferType: null,
-          transferStatus: null,
-          accountFrom: null,
-          accountTo: null,
-          amount: 0,
-          note: ''
+        breweries: [],
+        brewery: {
+            id: "",
+            name: "",
+            address: "",
+            city: "",
+            zip: "",
+            phone: "",
+            latitude: "",
+            longitude: "",
+            website: ""
         }
       }
     },
-    computed: {
-      userId() {
-        const authStore = useStore()
-        return authStore.getUserId
-      }
-    },
+    // computed: {
+    //   userId() {
+    //     const authStore = useStore()
+    //     return authStore.getUserId
+    //   }
+    // },
     created() {
       const authStore = useStore()
   
-      UserService.getUsersList().then((response) => {
-        this.users = response.data.filter((user) => user.id !== authStore.getUserId)
-        console.log(authStore.getUserId)
+      BreweryService.getBreweryList().then((response) => {
+        this.brewery = response.data;
         console.log(response.data)
-      }),
-        this.bal(this.userId)
+      });
     },
     methods: {
 

@@ -19,7 +19,6 @@ input, button {
   border-radius: 5px;
   padding: 5px;
   border: none;
-
 }
 
 button {
@@ -33,8 +32,8 @@ button {
     background-color: hsla(46, 41%, 71%, 0.432);
   }
   button:hover {
-    box-shadow: 0 4px 3px 0;
-    background-color: rgba(253, 213, 180, 0.788);
+    /* box-shadow: 0 4px 3px 0; */
+    background-color: transparent;
     border: solid #000 1px;
   }
 }

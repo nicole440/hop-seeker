@@ -4,10 +4,9 @@ import TheWelcome from '../components/TheWelcome.vue'
 
 <template>
   <main>
-    <TheWelcome />
-    (Extra space)<!-- Perhaps I can make another component to go here? -->
+    <div class="main-container">
+      <TheWelcome />
+      <!-- Do I need another component? Perhaps an image, or contact info? -->
+    </div>
   </main>
 </template>
-
-<style>
-</style>

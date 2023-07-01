@@ -1,33 +1,38 @@
 <template>
-    <div id="register" class="form-container">
-        <h1>Create Account</h1>
-        <form @submit.prevent="register">
-            <div class="form-input-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" v-model="user.username" required autofocus />
+    <main>
+        <div id="register" class="main-container">
+            <h1>Create Account</h1>
+            <form @submit.prevent="register">
+                <div class="form-input-group">
+                    <label for="username">Username: </label>
+                    <input type="text" id="username" v-model="user.username" required autofocus />
+                </div>
+                <div class="form-input-group">
+                    <label for="dateOfBirth">Date of Birth: </label>
+                    <input type="date" id="dateOfBirth" v-model="user.dateOfBirth" required />
+                </div>
+                <div class="form-input-group">
+                    <label for="password">Password: </label>
+                    <input type="text" id="password" v-model="user.password" required />
+                </div>
+                <div class="form-input-group">
+                    <label for="confirmPassword">Confirm Password: </label>
+                    <input type="text" id="confirmPassword" v-model="user.confirmPassword" required />
+                </div>
+                <button class="submit-button" type="submit">Submit</button>
+                <div class="alt-route-prompt">
+                    <h3>Already have an account? </h3>
+                    <RouterLink to="login">Log in</RouterLink>
+                </div>
+            </form>
+            <div role="alert" v-if="registrationErrors">
+                {{ registrationErrorMsg }}
             </div>
-            <div class="form-input-group">
-                <label for="dateOfBirth">Date of Birth</label>
-                <input type="date" id="dateOfBirth" v-model="user.dateOfBirth" required />
+            <div role="alert" v-if="this.$route.query.registration">
+                Thank you for registering, please sign in.
             </div>
-            <div class="form-input-group">
-                <label for="password">Password</label>
-                <input type="text" id="password" v-model="user.password" required />
-            </div>
-            <div class="form-input-group">
-                <label for="confirmPassword">Confirm Password</label>
-                <input type="text" id="confirmPassword" v-model="user.confirmPassword" required />
-            </div>
-            <button type="submit">Create Account</button>
-            <RouterLink to="login">Already have an account? Log in.</RouterLink>
-        </form>
-        <div role="alert" v-if="registrationErrors">
-            {{ registrationErrorMsg }}
         </div>
-        <div role="alert" v-if="this.$route.query.registration">
-            Thank you for registering, please sign in.
-        </div>
-    </div>
+    </main>
 </template>
   
 <script>
@@ -80,6 +85,6 @@ export default {
             this.registrationErrorMsg = "There were problems registering this user.";
         }
     },
-    components: { RouterLink } // Does this go here?
+    components: { RouterLink }
 }
 </script>
