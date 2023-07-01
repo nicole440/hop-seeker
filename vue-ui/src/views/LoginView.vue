@@ -1,37 +1,29 @@
 <template>
-  <div class="login">
+  <div class="form-container">
     <h1>Please sign in</h1>
     <form @submit.prevent="login">
-      <div class="input">
+      <div class="form-input-group">
         <label for="loginUsername">Username: </label>
         <input type="text" placeholder="Username" class="loginUsername" v-model="user.username" required>
         <label for="loginPassword">Password: </label>
         <input type="password" placeholder="Password" class="loginPassword" v-model="user.password" required>
       </div>
-      <button class="loginButton" type="submit">Login</button>
+      <button class="submit-button" type="submit">Login</button>
       <div role="alert" v-if="invalidCredentials">
         Invalid username and password!
       </div>
-      <div class="register-prompt">
+      <div class="alt-route-prompt">
         <h3>Need an account? </h3>
         <RouterLink to="register" class="signup">Sign up</RouterLink>
       </div>
     </form>
-
-    <!-- <div role="alert" v-if="this.$route.query.registration">
-          Thank you for registering, please sign in.
-        </div> -->
-
-
-    <!-- <router-link :to="{ name: 'register' }" class="signup">Sign up</router-link>
-      </form>
-      </div> -->
   </div>
 </template>
 
 <script>
 import authService from "../services/AuthService";
 import { useStore } from '../stores/authStore';
+import { RouterLink } from "vue-router";
 
 export default {
   name: "login",
@@ -71,18 +63,7 @@ export default {
 };
 </script>
 
-<!-- <style>
-@media (min-width: 1024px) {
-  .login {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    padding: 5px;
-  }
-}
-</style> -->
-
-<style scoped>
+<!-- <style scoped>
 body {
   display: flex;
   align-items: center;
@@ -90,18 +71,48 @@ body {
   padding-bottom: 40px;
 }
 
-.login {
+.form-container {
   margin: 0 auto;
   padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas: "head"
+                        "input"
+                        "button"
+                        "reg";
+  width: 300px;
+  justify-content: center;
+}
+
+h1 {
+  grid-area: head;
+  text-align: center;
 }
 
 .input {
-  display: grid;
-  max-width: 200px;
-  padding-bottom: 15px;
+  grid-area: input;
+  max-width: 300px;
+  padding: 15px;
 }
 
 .register-prompt {
+  grid-area: reg;
   padding-top: 10px;
+  text-align: center;
 }
-</style>
+
+@media (min-width: 1024px) {
+  .form-container {
+    /* min-height: 100vh; */
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding: 5px;
+  }
+
+  .submit-button {
+    grid-area: button;
+  }
+} 
+</style>-->
+

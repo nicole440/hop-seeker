@@ -10,13 +10,32 @@
 
 a {
   text-decoration: none;
-  color: rgb(170, 78, 2);
+  color: #282828;
   transition: 0.4s;
+}
+
+input, button {
+  min-height: 30px;
+  border-radius: 5px;
+  padding: 5px;
+  border: none;
+
+}
+
+button {
+  width: 50px;
+  margin: 3px;
+  /* box-shadow: 5px 5px; */
 }
 
 @media (hover: hover) {
   a:hover {
     background-color: hsla(46, 41%, 71%, 0.432);
+  }
+  button:hover {
+    box-shadow: 0 4px 3px 0;
+    background-color: rgba(253, 213, 180, 0.788);
+    border: solid #000 1px;
   }
 }
 

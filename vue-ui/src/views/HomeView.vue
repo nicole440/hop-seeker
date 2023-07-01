@@ -5,6 +5,7 @@ import TheWelcome from '../components/TheWelcome.vue'
 <template>
   <main>
     <TheWelcome />
+    (Extra space)<!-- Perhaps I can make another component to go here? -->
   </main>
 </template>
 

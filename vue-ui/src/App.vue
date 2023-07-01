@@ -2,7 +2,7 @@
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
 import { useStore } from './stores/authStore'
-import HomeView from './views/HomeView.vue';
+import UserInput from './components/UserInput.vue';
 // import 'bootstrap/dist/css/bootstrap.css'
 
 const authStore = useStore();
@@ -17,26 +17,24 @@ const authStore = useStore();
 
       <nav>
         <div>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/login">Login</RouterLink>
-
-      </div>
+          <RouterLink :to="{ name: 'home' }">Home</RouterLink>
+          <RouterLink :to="{ name: 'search' }">Search</RouterLink>
+          <RouterLink :to="{ name: 'login' }" v-if="authStore.tokenCheck == ''">Login</RouterLink>
+          <RouterLink :to="{ name: 'favorites' }" v-if="authStore.tokenCheck != ''">Favorites</RouterLink>
+          <RouterLink :to="{ name: 'register' }" v-if="authStore.tokenCheck == ''">Register</RouterLink>
+          <RouterLink :to="{ name: 'logout' }" v-if="authStore.tokenCheck != ''" @click="authStore.logout">Logout</RouterLink>
+        </div>
       </nav>
     </div>
   </header>
-
   <RouterView />
-  <HomeView />
+  <!-- <HomeView /> This does not go here. Don't put these here. This is what was making it repeat, I think. -->
 </template>
 
 <style scoped>
-div#app > * {
-  min-height: 90vh;
-}
-
 header {
   line-height: 1.5;
-  max-height: 100vh;
+  max-height: 90vh;
   padding: 0 20px;
   background-image: url("https://images.unsplash.com/photo-1600788886242-5c96aabe3757?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80");
   background-size: cover;
@@ -49,6 +47,7 @@ header {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 header .wrapper {
   color: #141414;
   font-size: 30px;
@@ -60,16 +59,19 @@ header .wrapper {
   display: block;
   margin: 0 auto 2rem;
 }
-@media (prefers-reduced-motion: no-preference){
+
+@media (prefers-reduced-motion: no-preference) {
   .logo {
     padding: 5px;
     animation: logo-spin infinite 20s linear;
   }
 }
+
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -105,6 +107,7 @@ nav a:first-of-type {
     display: flex;
     place-items: center;
     padding-right: calc(var(--section-gap) / 2);
+    min-height: 90vh;
   }
 
   .logo {
@@ -124,6 +127,12 @@ nav a:first-of-type {
 
     padding: 1rem 0;
     margin-top: 1rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  header {
+    min-width: 90vw;
   }
 }
 </style>
