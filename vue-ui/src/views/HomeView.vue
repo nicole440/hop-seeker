@@ -6,7 +6,7 @@ import FeatureCard from '../components/FeatureCard.vue'
   <main>
     <div class="main-container">
       <FeatureCard />
-      <!-- Do I need another component? Perhaps an image, or contact info? -->
+      <!-- Do I want another component? Perhaps an image, or contact info? -->
     </div>
   </main>
 </template>

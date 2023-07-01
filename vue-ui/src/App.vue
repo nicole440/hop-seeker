@@ -28,7 +28,7 @@ const authStore = useStore();
   <RouterView />
 </template>
 
-<style scoped>
+<style>
 header {
   line-height: 1.5;
   max-height: 90vh;
@@ -133,7 +133,7 @@ nav a:first-of-type {
   }
 }
 
-/* .main-container {
+.main-container {
     background-color: rgba(20, 20, 20, 0.6);
     margin: 20px auto;
     padding: 50px;
@@ -145,7 +145,17 @@ nav a:first-of-type {
         "reroute";
     width: 80%;
     justify-content: center;
-} */
+}
+
+@media (max-width: 1024px) {
+  .main-container {
+    margin: 0 auto;
+    padding: 0;
+  }
+  h1 {
+    font-size: 2em;
+  }
+}
 
 main {
   position: relative;

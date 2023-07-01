@@ -5,7 +5,7 @@
             <form @submit.prevent="register">
                 <div class="form-input-group">
                     <label for="username">Username: </label>
-                    <input type="text" id="username" v-model="user.username" required autofocus />
+                    <input type="text" placeholder="username" id="username" v-model="user.username" required autofocus />
                 </div>
                 <div class="form-input-group">
                     <label for="dateOfBirth">Date of Birth: </label>
@@ -13,11 +13,11 @@
                 </div>
                 <div class="form-input-group">
                     <label for="password">Password: </label>
-                    <input type="text" id="password" v-model="user.password" required />
+                    <input type="text" placeholder="password" id="password" v-model="user.password" required />
                 </div>
                 <div class="form-input-group">
                     <label for="confirmPassword">Confirm Password: </label>
-                    <input type="text" id="confirmPassword" v-model="user.confirmPassword" required />
+                    <input type="text" placeholder="confirm password" id="confirmPassword" v-model="user.confirmPassword" required />
                 </div>
                 <button class="submit-button" type="submit">Submit</button>
                 <div class="alt-route-prompt">

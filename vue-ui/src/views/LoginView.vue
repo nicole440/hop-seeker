@@ -5,11 +5,11 @@
       <form @submit.prevent="login">
         <div class="form-input-group">
           <label for="loginUsername">Username: </label>
-          <input type="text" placeholder="Username" class="loginUsername" v-model="user.username" required>
+          <input type="text" placeholder="username" v-model="user.username" required>
         </div>
         <div class="form-input-group">
           <label for="loginPassword">Password: </label>
-          <input type="password" placeholder="Password" class="loginPassword" v-model="user.password" required>
+          <input type="password" placeholder="password" v-model="user.password" required>
         </div>
         <button class="submit-button" type="submit">Login</button>
         <div role="alert" v-if="invalidCredentials">

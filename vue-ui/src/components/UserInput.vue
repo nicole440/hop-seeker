@@ -11,20 +11,6 @@ import SearchView from '../views/SearchView.vue';
 </template>
 
 <style>
-.main-container {
-    background-color: rgba(20, 20, 20, 0.6);
-    margin: 20px auto;
-    padding: 50px;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-areas: "head"
-        "input"
-        "button"
-        "reroute";
-    width: 80%;
-    justify-content: center;
-}
-
 h1 {
     grid-area: head;
     text-align: center;
@@ -34,6 +20,7 @@ h1 {
     grid-area: input;
     max-width: auto;
     padding: 15px;
+    margin: 15px;
 }
 
 .submit-button {
@@ -48,13 +35,16 @@ h1 {
     text-align: center;
 }
 
-@media (min-width: 1024px) {
+@media (max-width: 1024px) {
     .form-container {
-        /* min-height: 100vh; */
+        min-height: 100vh;
         display: flex;
         align-items: center;
         text-align: center;
         padding: 5px;
+    }
+    h3 {
+        font-size: 1em;
     }
 }
 </style>
