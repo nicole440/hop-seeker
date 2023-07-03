@@ -92,7 +92,7 @@ public class JdbcBreweryDao implements BreweryDao {
     public boolean addNewBrewery(Brewery newBrewery) {
         String sql = "INSERT INTO breweries (brewery_id, brewery_name, street_address, city, zip_code, latitude, longitude, website) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
-        jdbcTemplate.update(sql, newBrewery.getBreweryId(), newBrewery.getBreweryName(), newBrewery.getBreweryStreetAddress(), newBrewery.getBreweryCity(), newBrewery.getBreweryZipCode(), newBrewery.getLatitude(), newBrewery.getLongitude(), newBrewery.getBreweryWebsite());
+        jdbcTemplate.update(sql, newBrewery.getBreweryId(), newBrewery.getBreweryName(), newBrewery.getStreetAddress(), newBrewery.getCity(), newBrewery.getZipCode(), newBrewery.getLatitude(), newBrewery.getLongitude(), newBrewery.getBreweryWebsite());
         return newBrewery == null ? false : true;
     }
 
@@ -100,9 +100,9 @@ public class JdbcBreweryDao implements BreweryDao {
         Brewery brewery = new Brewery();
         brewery.setBreweryId(rowSet.getString("brewery_id"));
         brewery.setBreweryName(rowSet.getString("brewery_name"));
-        brewery.setBreweryStreetAddress(rowSet.getString("street_address"));
-        brewery.setBreweryCity(rowSet.getString("city"));
-        brewery.setBreweryZipCode(rowSet.getString("zip_code"));
+        brewery.setStreetAddress(rowSet.getString("street_address"));
+        brewery.setCity(rowSet.getString("city"));
+        brewery.setZipCode(rowSet.getString("zip_code"));
         brewery.setLatitude(rowSet.getString("latitude"));
         brewery.setLongitude(rowSet.getString("longitude"));
         brewery.setBreweryWebsite(rowSet.getString("website"));

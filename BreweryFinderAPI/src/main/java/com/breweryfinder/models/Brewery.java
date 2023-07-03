@@ -8,27 +8,27 @@ public class Brewery {
     @JsonProperty("name")
     private String breweryName;
     @JsonProperty("address_1")
-    private String breweryStreetAddress;
+    private String streetAddress;
     @JsonProperty("city")
-    private String breweryCity;
+    private String city;
     @JsonProperty("postal_code")
-    private String breweryZipCode;
+    private String zipCode;
     @JsonProperty("latitude")
     private String latitude;
     @JsonProperty("longitude")
     private String longitude;
     @JsonProperty("website_url")
-    private String breweryWebsite;
+    private String website;
 
     public Brewery(String breweryId, String breweryName, String breweryStreetAddress, String breweryCity, String breweryZipCode, String latitude, String longitude, String breweryWebsite) {
         this.breweryId = breweryId;
         this.breweryName = breweryName;
-        this.breweryStreetAddress = breweryStreetAddress;
-        this.breweryCity = breweryCity;
-        this.breweryZipCode = breweryZipCode;
+        this.streetAddress = breweryStreetAddress;
+        this.city = breweryCity;
+        this.zipCode = breweryZipCode;
         this.latitude = latitude;
         this.longitude = longitude;
-        this.breweryWebsite = breweryWebsite;
+        this.website = breweryWebsite;
     }
 
     public Brewery() {
@@ -51,28 +51,28 @@ public class Brewery {
         this.breweryName = breweryName;
     }
 
-    public String getBreweryStreetAddress() {
-        return breweryStreetAddress;
+    public String getStreetAddress() {
+        return streetAddress;
     }
 
-    public void setBreweryStreetAddress(String breweryStreetAddress) {
-        this.breweryStreetAddress = breweryStreetAddress;
+    public void setStreetAddress(String streetAddress) {
+        this.streetAddress = streetAddress;
     }
 
-    public String getBreweryCity() {
-        return breweryCity;
+    public String getCity() {
+        return city;
     }
 
-    public void setBreweryCity(String breweryCity) {
-        this.breweryCity = breweryCity;
+    public void setCity(String city) {
+        this.city = city;
     }
 
-    public String getBreweryZipCode() {
-        return breweryZipCode;
+    public String getZipCode() {
+        return zipCode;
     }
 
-    public void setBreweryZipCode(String breweryZipCode) {
-        this.breweryZipCode = breweryZipCode;
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
     }
 
     public String getLatitude() {
@@ -92,10 +92,10 @@ public class Brewery {
     }
 
     public String getBreweryWebsite() {
-        return breweryWebsite;
+        return website;
     }
 
     public void setBreweryWebsite(String breweryWebsite) {
-        this.breweryWebsite = breweryWebsite;
+        this.website = breweryWebsite;
     }
 }

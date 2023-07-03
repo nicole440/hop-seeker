@@ -1,11 +1,13 @@
 package com.breweryfinder.models;
 
 import javax.validation.constraints.NotEmpty;
+import java.time.LocalDate;
 
-public class RegisteredUserDto {
+public class RegisterUserDto {
 
     @NotEmpty
     private String username;
+    private LocalDate dateOfBirth;
     @NotEmpty
     private String password;
 
@@ -15,6 +17,14 @@ public class RegisteredUserDto {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     public String getPassword() {

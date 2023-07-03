@@ -13,10 +13,9 @@ import java.util.Set;
 public class User {
 
     private int id;
-    @NotNull
-    private LocalDate dateOfBirth;
     @NotBlank
     private String username;
+    private LocalDate dateOfBirth;
     @JsonIgnore // prevent from being sent to client
     private String password;
     @JsonIgnore
@@ -27,10 +26,10 @@ public class User {
 
     public User() { }
 
-    public User(int id, LocalDate dateOfBirth, String username, String password, String authorities) {
+    public User(int id, String username, LocalDate dateOfBirth, String password, Set<Authority> authorities) {
         this.id = id;
-        this.dateOfBirth = dateOfBirth;
         this.username = username;
+        this.dateOfBirth = dateOfBirth;
         this.password = password;
         if(authorities != null) this.setAuthorities(authorities);
         this.activated = true;
@@ -44,25 +43,20 @@ public class User {
         this.id = id;
     }
 
-    public LocalDate getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(LocalDate dateOfBirth) {
-        LocalDate now = LocalDate.now();
-        Period period = Period.between(dateOfBirth, now);
-        int age = period.getYears();
-        if (age >= LEGAL_DRINKING_AGE_USA) {
-            this.dateOfBirth = dateOfBirth;
-        } else dateOfBirth = null;
-    }
-
     public String getUsername() {
         return username;
     }
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     public String getPassword() {
@@ -92,7 +86,8 @@ public class User {
     public void setAuthorities(String authorities) {
         String[] roles = authorities.split(",");
         for(String role : roles) {
-            this.authorities.add(new Authority("ROLE_" + role));
+            String authority = role.contains("ROLE_") ? role : "ROLE_" + role;
+            this.authorities.add(new Authority(authority));
         }
     }
 
@@ -103,7 +98,6 @@ public class User {
         User user = (User) o;
         return id == user.id &&
                 activated == user.activated &&
-                Objects.equals(dateOfBirth, user.dateOfBirth) && // added DOB
                 Objects.equals(username, user.username) &&
                 Objects.equals(password, user.password) &&
                 Objects.equals(authorities, user.authorities);
@@ -111,14 +105,13 @@ public class User {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, dateOfBirth, username, password, activated, authorities); // added DOB
+        return Objects.hash(id, username, password, activated, authorities);
     }
 
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", dateOfBirth=" + dateOfBirth + // added DOB
                 ", username=" + username + '\'' +
                 ", activated=" + activated +
                 ", authorities=" + authorities +
