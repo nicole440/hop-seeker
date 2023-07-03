@@ -35,6 +35,12 @@
   
   export default {
     name: 'brewery-list',
+    // props: {
+    //   breweries: {
+    //     type: Array,
+    //     required: true
+    //   }
+    // },
     data() {
       return {
         breweries: [],

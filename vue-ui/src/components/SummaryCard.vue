@@ -1,7 +1,7 @@
 <script setup>
 import SummaryCard from './SummaryCard.vue'
 </script>
-
+<!--This section will eventually show up somewhere. To be continued.-->
 <template>
     <main>
         <div class="info-container">
