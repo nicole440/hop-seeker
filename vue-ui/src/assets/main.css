@@ -26,6 +26,10 @@ button {
   /* box-shadow: 5px 5px; */
 }
 
+.error {
+  color: rgb(248, 49, 49);
+}
+
 @media (hover: hover) {
   a:hover {
     background-color: hsla(46, 41%, 71%, 0.432);

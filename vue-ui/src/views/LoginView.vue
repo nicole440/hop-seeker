@@ -13,7 +13,7 @@
         </div>
         <button class="submit-button" type="submit">Login</button>
         <div role="alert" v-if="invalidCredentials">
-          Invalid username and password!
+          <span class="error">Invalid username and password</span>
         </div>
         <div class="alt-route-prompt">
           <h3>Need an account? </h3>
@@ -65,5 +65,5 @@ export default {
     },
   },
   components: { RouterLink }
-};
+}
 </script>

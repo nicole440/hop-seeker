@@ -39,6 +39,14 @@ const router = createRouter({
       }
     },
     {
+      path: "/authorized",
+      name: "authorized",
+      component: FavoritesView,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
       path: "/favorites",
       name: "favorites",
       component: FavoritesView,

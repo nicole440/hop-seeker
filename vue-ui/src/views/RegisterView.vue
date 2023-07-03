@@ -13,11 +13,12 @@
                 </div>
                 <div class="form-input-group">
                     <label for="password">Password: </label>
-                    <input type="text" placeholder="password" id="password" v-model="user.password" required />
+                    <input type="password" placeholder="password" id="password" v-model="user.password" required />
                 </div>
                 <div class="form-input-group">
                     <label for="confirmPassword">Confirm Password: </label>
-                    <input type="text" placeholder="confirm password" id="confirmPassword" v-model="user.confirmPassword" required />
+                    <input type="password" placeholder="confirm password" id="confirmPassword"
+                        v-model="user.confirmPassword" required />
                 </div>
                 <button class="submit-button" type="submit">Submit</button>
                 <div class="alt-route-prompt">
@@ -26,7 +27,7 @@
                 </div>
             </form>
             <div role="alert" v-if="registrationErrors">
-                {{ registrationErrorMsg }}
+                <span class="error">{{ registrationErrorMsg }}</span>
             </div>
             <div role="alert" v-if="this.$route.query.registration">
                 Thank you for registering, please sign in.
@@ -55,7 +56,18 @@ export default {
         };
     },
     methods: {
+        formatDate(dateOfBirth) {
+            let dob = new Date(dateOfBirth);
+            let month = "" + (dob.getMonth() + 1); // Add 1 to get the correct month (0-11)
+            let day = "" + (dob.getDate() + 1); // Add 1 to get the correct date (0-30)
+            let year = "" + dob.getFullYear();
+            let formattedDate = [year, month.padStart(2, "0"), day.padStart(2, "0")].join("-");
+            return formattedDate;
+        },
+
         async register() {
+            this.user.dateOfBirth = this.formatDate(this.user.dateOfBirth);
+
             if (this.user.password !== this.user.confirmPassword) {
                 this.registrationErrors = true;
                 this.registrationErrorMsg = "Password & Confirm Password do not match.";

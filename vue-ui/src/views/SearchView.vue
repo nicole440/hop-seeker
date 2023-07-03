@@ -34,7 +34,10 @@ export default {
         return {
             breweries: []
         }
-    }
+    },
+    // methods: {
+
+    // }
 }
 </script>
 

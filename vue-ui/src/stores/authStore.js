@@ -33,21 +33,18 @@ export const useStore = defineStore({
       axios.defaults.headers.common = {};
     }
   },
-    getters: {
-        userFirstName() {
-          return this.user ? this.user.firstName : '';
-        },
-        tokenCheck() {
-            console.log(this.token);
-            console.log(this.user);
-            return this.token ? this.token : '';
-        },
-        getUserId(){
-          return this.user.id;
-        },
-        getCurrentUser() {
-          console.log(this.user)
-          return this.user;
-        }
+  getters: {
+    tokenCheck() {
+      console.log(this.token);
+      console.log(this.user);
+      return this.token ? this.token : '';
+    },
+    getUserId() {
+      return this.user.id;
+    },
+    getCurrentUser() {
+      console.log(this.user)
+      return this.user;
+    }
   }
 });

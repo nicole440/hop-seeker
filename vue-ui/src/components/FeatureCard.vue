@@ -4,6 +4,7 @@ import FeatureItem from './FeatureItem.vue'
 
 <template>
   <div class="info-container">
+    <SummaryCard />
     <FeatureItem>
       <template #icon>
         <span class="material-symbols-outlined">search</span>
