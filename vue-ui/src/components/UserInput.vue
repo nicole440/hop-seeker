@@ -1,13 +1,12 @@
 <script setup>
 import LoginView from '../views/LoginView.vue';
 import RegisterView from '../views/RegisterView.vue';
-import SearchView from '../views/SearchView.vue';
 </script>
 
 <template>
     <LoginView />
     <RegisterView />
-    <SearchView />
+
 </template>
 
 <style>

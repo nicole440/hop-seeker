@@ -42,6 +42,7 @@ import { RouterLink } from 'vue-router'
 
 export default {
     name: "register",
+    components: { RouterLink },
     data() {
         return {
             user: {
@@ -96,7 +97,6 @@ export default {
             this.registrationErrors = false;
             this.registrationErrorMsg = "There were problems registering this user.";
         }
-    },
-    components: { RouterLink }
+    }
 }
 </script>

@@ -7,6 +7,7 @@ const authStore = useStore();
 </script>
 
 <template>
+  <div>
   <header>
     <img alt="HopSeeker logo" class="logo" src="@/assets/hop.png" width="125" height="125" />
 
@@ -25,13 +26,19 @@ const authStore = useStore();
       </nav>
     </div>
   </header>
-  <RouterView />
+  <div><RouterView /></div>
+  </div>
 </template>
 
 <style>
-header {
+/* #app {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+} */
+/* header {
   line-height: 1.5;
-  max-height: 90vh;
   padding: 0 20px;
   background-image: url("https://images.unsplash.com/photo-1600788886242-5c96aabe3757?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80");
   background-size: cover;
@@ -43,7 +50,7 @@ header {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
+} */
 
 header .wrapper {
   color: #141414;
@@ -95,9 +102,9 @@ nav a {
   border-left: 1px solid var(--color-border);
 }
 
-nav a:first-of-type {
+/* nav a:first-of-type {
   border: 0;
-}
+} */
 
 @media (min-width: 1024px) {
   header {
@@ -133,7 +140,7 @@ nav a:first-of-type {
   }
 }
 
-.main-container {
+/* .main-container {
     background-color: rgba(20, 20, 20, 0.6);
     margin: 20px auto;
     padding: 50px;
@@ -145,7 +152,7 @@ nav a:first-of-type {
         "reroute";
     width: 80%;
     justify-content: center;
-}
+} */
 
 @media (max-width: 1024px) {
   .main-container {
@@ -157,10 +164,11 @@ nav a:first-of-type {
   }
 }
 
-main {
+/* main {
   position: relative;
-}
-main::before {
+  width: 100%;
+} */
+/* main::before {
   content: "";
   position: absolute;
   top: 0;
@@ -173,7 +181,7 @@ main::before {
   background-repeat: no-repeat;
   filter: blur(2.5px);
   z-index: -1;
-}
+} */
 
 
 
