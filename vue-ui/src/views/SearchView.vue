@@ -22,21 +22,20 @@
             </div>
         </div>
         <div class="results-container">
-            <!-- <BreweryList/> -->
+            <BreweryList/>
             asdfjkl;
         </div>
     </main>
 </template>
 
 <script>
-// import BreweryService from "../services/BreweryService";
+import BreweryService from "../services/BreweryService";
 import BreweryList from "../components/BreweryList.vue";
 
 export default {
     name: "search",
     components: {
         BreweryList,
-        // BreweryService
     },
     data() {
         return {
