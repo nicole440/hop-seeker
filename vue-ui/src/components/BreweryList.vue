@@ -3,18 +3,18 @@
     <div>
       <table class="brewery-table">
         <thead>
-          <tr>
+
             <th>Name</th>
             <th>Address</th>
             <th>City</th>
-            <th>Zip Code</th>
-            <th>Phone Number</th>
-            <th>Lat/Long</th>
-            <th>Website</th>
-          </tr>
+
         </thead>
         <tbody>
-          <BreweryCard v-for="brewery in breweries" :key="brewery.id" :brewery="brewery" />
+          <tr v-for="brewery in breweries" :key="brewery.id" :brewery="brewery">
+            <td class="brewery-name">{{ brewery.name }}</td>
+            <td class="brewery-address">{{ brewery.address }}</td>
+            <td class="brewery-city">{{ brewery.city }}</td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -22,40 +22,29 @@
 </template>
   
 <script>
-import { useStore } from '../stores/authStore'
-import BreweryCard from './BreweryCard.vue';
 
 export default {
   name: 'brewery-list',
   props: {
     breweries: {
       type: Array,
-      required: true,
       default: () => []
-    }
+    },
   },
-  components: {
-    BreweryCard
-  },
+  // 
   // data() {
   //   return {
   //     breweries: [],
   //     brewery: {
-  //       id: "",
   //       name: "",
-  //       address: "",
   //       city: "",
-  //       zip: "",
-  //       phone: "",
-  //       latitude: "",
-  //       longitude: "",
-  //       website: ""
+  //       zip: ""
   //     }
   //   }
   // },
   created() {
-    const authStore = useStore()
-    console.log(this.breweries);
+    console.log("BreweryList - created:", this.breweries);  
+    // why can't I delete this commented-out code without the application breaking???
     // BreweryService.getBreweriesByName().then((response) => {
     //   this.breweries = response.data;
     //   console.log(response.data)

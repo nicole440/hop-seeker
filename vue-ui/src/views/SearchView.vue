@@ -22,8 +22,7 @@
             </div>
         </div>
         <div class="results-container">
-            <BreweryList/>
-            asdfjkl;
+            <BreweryList :breweries="breweries" />
         </div>
     </main>
 </template>
@@ -39,19 +38,41 @@ export default {
     },
     data() {
         return {
-            brewery: {}
+            brewery: {
+                name: "",
+                city: "",
+                zip: ""
+            }
         }
     },
     methods: {
-        async search() {
-            if (this.brewery.name !== "") {
-                this.breweries = await BreweryService.getBreweriesByName(this.brewery.name)
-            } else if (this.brewery.city !== "") {
-                this.breweries = await BreweryService.getBreweriesByCity(this.brewery.city)
-            } else if (this.brewery.zip !== "") {
-                this.breweries = await BreweryService.getBreweriesByZip(this.brewery.zip)
-            }
-        }
-    }
-}
+        search() {
+      if (this.brewery.name !== "") {
+        BreweryService.getBreweriesByName(this.brewery.name)
+          .then((response) => {
+            this.breweries = response.data;
+          })
+          .catch((error) => {
+            console.error("Error fetching brewery data:", error);
+          });
+      } else if (this.brewery.city !== "") {
+        BreweryService.getBreweriesByCity(this.brewery.city)
+          .then((response) => {
+            this.breweries = response.data;
+          })
+          .catch((error) => {
+            console.error("Error fetching brewery data:", error);
+          });
+      } else if (this.brewery.zip !== "") {
+        BreweryService.getBreweriesByZip(this.brewery.zip)
+          .then((response) => {
+            this.breweries = response.data;
+          })
+          .catch((error) => {
+            console.error("Error fetching brewery data:", error);
+          });
+      }
+    },
+  },
+};
 </script>
